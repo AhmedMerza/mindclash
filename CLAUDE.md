@@ -90,7 +90,7 @@ Use mocktail for mocks. Arrange/Act/Assert pattern.
 - **Always ask before staging, committing, or pushing**
 - Conventional commits: `feat:`, `fix:`, `refactor:`, `test:`, `docs:`, `chore:`
 - Atomic commits — one logical change each
-- Branches: `main`, `feat/name`, `fix/name`, `refactor/name`
+- Solo dev: commit to `main` directly. Branch only for risky experiments.
 
 ## Questions Schema (Phase 1)
 
