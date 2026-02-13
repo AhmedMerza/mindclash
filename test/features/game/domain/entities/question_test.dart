@@ -1,6 +1,6 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mindclash/features/game/domain/entities/difficulty.dart';
 import 'package:mindclash/features/game/domain/entities/question.dart';
-import 'package:test/test.dart';
 
 void main() {
   group('Question', () {

@@ -1,18 +1,18 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mindclash/features/game/domain/entities/difficulty.dart';
 import 'package:mindclash/features/game/domain/entities/game_config.dart';
 import 'package:mindclash/features/game/domain/entities/game_data.dart';
 import 'package:mindclash/features/game/domain/entities/player.dart';
 import 'package:mindclash/features/game/domain/entities/question.dart';
-import 'package:test/test.dart';
 
 void main() {
   group('GameData', () {
-    final players = const [
+    const players = [
       Player(id: 'p1', name: 'Alice'),
       Player(id: 'p2', name: 'Bob'),
     ];
 
-    final questions = const [
+    const questions = [
       Question(
         id: 'q1',
         text: 'Question 1?',
@@ -25,7 +25,7 @@ void main() {
     const config = GameConfig();
 
     test('index defaults are 0 and round defaults to 1', () {
-      final data = GameData(
+      const data = GameData(
         players: players,
         questions: questions,
         config: config,
@@ -37,7 +37,7 @@ void main() {
     });
 
     test('copyWith advances question index', () {
-      final data = GameData(
+      const data = GameData(
         players: players,
         questions: questions,
         config: config,

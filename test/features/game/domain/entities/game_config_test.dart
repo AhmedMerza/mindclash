@@ -1,5 +1,5 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mindclash/features/game/domain/entities/game_config.dart';
-import 'package:test/test.dart';
 
 void main() {
   group('GameConfig', () {
