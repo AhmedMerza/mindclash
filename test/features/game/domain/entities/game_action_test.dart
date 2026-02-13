@@ -1,9 +1,9 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mindclash/features/game/domain/entities/difficulty.dart';
 import 'package:mindclash/features/game/domain/entities/game_action.dart';
 import 'package:mindclash/features/game/domain/entities/game_config.dart';
 import 'package:mindclash/features/game/domain/entities/player.dart';
 import 'package:mindclash/features/game/domain/entities/question.dart';
-import 'package:test/test.dart';
 
 void main() {
   group('GameAction', () {
@@ -53,6 +53,18 @@ void main() {
       expect(action, isA<GameAction>());
     });
 
+    test('pauseGame constructs', () {
+      const action = PauseGame();
+
+      expect(action, isA<GameAction>());
+    });
+
+    test('resumeGame constructs', () {
+      const action = ResumeGame();
+
+      expect(action, isA<GameAction>());
+    });
+
     test('exhaustive pattern matching works', () {
       const GameAction action = AnswerQuestion(selectedIndex: 1);
 
@@ -61,6 +73,8 @@ void main() {
         AnswerQuestion() => 'answer',
         SkipQuestion() => 'skip',
         NextRound() => 'nextRound',
+        PauseGame() => 'pause',
+        ResumeGame() => 'resume',
         EndGame() => 'end',
       };
 

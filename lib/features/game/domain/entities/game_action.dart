@@ -25,5 +25,7 @@ sealed class GameAction with _$GameAction {
 
   const factory GameAction.skipQuestion() = SkipQuestion;
   const factory GameAction.nextRound() = NextRound;
+  const factory GameAction.pauseGame() = PauseGame;
+  const factory GameAction.resumeGame() = ResumeGame;
   const factory GameAction.endGame() = EndGame;
 }
