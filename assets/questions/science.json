@@ -1,0 +1,122 @@
+[
+  {
+    "id": "sci_001",
+    "text": "What is the chemical symbol for water?",
+    "options": ["H2O", "CO2", "NaCl", "O2"],
+    "correctIndex": 0,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_002",
+    "text": "What planet is known as the Red Planet?",
+    "options": ["Venus", "Mars", "Jupiter", "Saturn"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_003",
+    "text": "What gas do plants absorb from the atmosphere?",
+    "options": ["Oxygen", "Nitrogen", "Hydrogen", "Carbon dioxide"],
+    "correctIndex": 3,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_004",
+    "text": "How many bones are in the adult human body?",
+    "options": ["206", "106", "306", "186"],
+    "correctIndex": 0,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_005",
+    "text": "What is the closest star to Earth?",
+    "options": ["The Sun", "Sirius", "Alpha Centauri", "Betelgeuse"],
+    "correctIndex": 0,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_006",
+    "text": "What is the powerhouse of the cell?",
+    "options": ["Nucleus", "Ribosome", "Mitochondria", "Golgi apparatus"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_007",
+    "text": "What type of bond involves the sharing of electron pairs?",
+    "options": ["Ionic bond", "Covalent bond", "Metallic bond", "Hydrogen bond"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_008",
+    "text": "What is the SI unit of electric current?",
+    "options": ["Volt", "Watt", "Ampere", "Ohm"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_009",
+    "text": "Which organ is responsible for filtering blood in the human body?",
+    "options": ["Liver", "Kidney", "Heart", "Lungs"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_010",
+    "text": "What is the most abundant gas in Earth's atmosphere?",
+    "options": ["Oxygen", "Carbon dioxide", "Argon", "Nitrogen"],
+    "correctIndex": 3,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_011",
+    "text": "What is the Heisenberg uncertainty principle about?",
+    "options": [
+      "Energy conservation in closed systems",
+      "Simultaneous measurement of position and momentum",
+      "The speed of light being constant",
+      "Entropy always increasing"
+    ],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sci_012",
+    "text": "What is the approximate age of the universe?",
+    "options": [
+      "4.6 billion years",
+      "10.2 billion years",
+      "13.8 billion years",
+      "20.1 billion years"
+    ],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sci_013",
+    "text": "Which particle is the exchange particle for the strong nuclear force?",
+    "options": ["Photon", "W boson", "Graviton", "Gluon"],
+    "correctIndex": 3,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sci_014",
+    "text": "What enzyme unwinds the DNA double helix during replication?",
+    "options": ["DNA polymerase", "Ligase", "Helicase", "Primase"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sci_015",
+    "text": "What is the Chandrasekhar limit?",
+    "options": [
+      "Maximum mass of a stable white dwarf star",
+      "Minimum distance between two black holes",
+      "Maximum speed of a neutron star",
+      "Minimum temperature for nuclear fusion"
+    ],
+    "correctIndex": 0,
+    "difficulty": "hard"
+  }
+]
