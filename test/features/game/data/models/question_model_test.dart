@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mindclash/features/game/data/models/question_model.dart';
-import 'package:mindclash/features/game/domain/entities/difficulty.dart';
 import 'package:mindclash/features/game/domain/entities/question.dart';
 
 void main() {
@@ -10,7 +9,7 @@ void main() {
       text: 'What is the chemical symbol for water?',
       options: ['H2O', 'CO2', 'NaCl', 'O2'],
       correctIndex: 0,
-      difficulty: Difficulty.easy,
+      difficulty: 'easy',
     );
 
     final validJson = {
@@ -22,22 +21,29 @@ void main() {
     };
 
     group('fromJson', () {
-      test('parses all fields correctly including difficulty enum', () {
+      test('parses all fields correctly', () {
         final result = QuestionModel.fromJson(validJson);
 
         expect(result.id, 'sci_001');
         expect(result.text, 'What is the chemical symbol for water?');
         expect(result.options, ['H2O', 'CO2', 'NaCl', 'O2']);
         expect(result.correctIndex, 0);
-        expect(result.difficulty, Difficulty.easy);
+        expect(result.difficulty, 'easy');
+        expect(result.score, isNull);
       });
 
-      test('parses all difficulty levels', () {
-        for (final difficulty in Difficulty.values) {
-          final json = {...validJson, 'difficulty': difficulty.name};
-          final result = QuestionModel.fromJson(json);
-          expect(result.difficulty, difficulty);
-        }
+      test('parses optional score field', () {
+        final json = {...validJson, 'score': 500};
+        final result = QuestionModel.fromJson(json);
+
+        expect(result.score, 500);
+      });
+
+      test('accepts any difficulty string', () {
+        final json = {...validJson, 'difficulty': 'nightmare'};
+        final result = QuestionModel.fromJson(json);
+
+        expect(result.difficulty, 'nightmare');
       });
 
       test('throws on invalid data', () {
@@ -58,17 +64,87 @@ void main() {
       expect(roundTripped.options, model.options);
       expect(roundTripped.correctIndex, model.correctIndex);
       expect(roundTripped.difficulty, model.difficulty);
+      expect(roundTripped.score, model.score);
     });
 
-    test('toEntity maps all fields to domain Question', () {
-      final entity = model.toEntity();
+    group('toEntity', () {
+      test('maps all fields to domain Question', () {
+        final entity = model.toEntity();
 
-      expect(entity, isA<Question>());
-      expect(entity.id, model.id);
-      expect(entity.text, model.text);
-      expect(entity.options, model.options);
-      expect(entity.correctIndex, model.correctIndex);
-      expect(entity.difficulty, model.difficulty);
+        expect(entity, isA<Question>());
+        expect(entity.id, model.id);
+        expect(entity.text, model.text);
+        expect(entity.options, model.options);
+        expect(entity.correctIndex, model.correctIndex);
+        expect(entity.difficulty, model.difficulty);
+      });
+
+      test('defaults score by label when no explicit score', () {
+        const easyModel = QuestionModel(
+          id: 'q1',
+          text: 'Q?',
+          options: ['A', 'B', 'C', 'D'],
+          correctIndex: 0,
+          difficulty: 'easy',
+        );
+        expect(easyModel.toEntity().score, 200);
+
+        const mediumModel = QuestionModel(
+          id: 'q2',
+          text: 'Q?',
+          options: ['A', 'B', 'C', 'D'],
+          correctIndex: 0,
+          difficulty: 'medium',
+        );
+        expect(mediumModel.toEntity().score, 400);
+
+        const hardModel = QuestionModel(
+          id: 'q3',
+          text: 'Q?',
+          options: ['A', 'B', 'C', 'D'],
+          correctIndex: 0,
+          difficulty: 'hard',
+        );
+        expect(hardModel.toEntity().score, 600);
+      });
+
+      test('explicit score overrides default', () {
+        const overridden = QuestionModel(
+          id: 'q1',
+          text: 'Q?',
+          options: ['A', 'B', 'C', 'D'],
+          correctIndex: 0,
+          difficulty: 'easy',
+          score: 500,
+        );
+
+        expect(overridden.toEntity().score, 500);
+      });
+
+      test('unknown label without score gets fallback of 400', () {
+        const custom = QuestionModel(
+          id: 'q1',
+          text: 'Q?',
+          options: ['A', 'B', 'C', 'D'],
+          correctIndex: 0,
+          difficulty: 'nightmare',
+        );
+
+        expect(custom.toEntity().score, 400);
+      });
+
+      test('unknown label with explicit score uses explicit value', () {
+        const custom = QuestionModel(
+          id: 'q1',
+          text: 'Q?',
+          options: ['A', 'B', 'C', 'D'],
+          correctIndex: 0,
+          difficulty: 'nightmare',
+          score: 1000,
+        );
+
+        expect(custom.toEntity().score, 1000);
+      });
     });
 
     test('fromEntity maps all fields from domain Question', () {
@@ -77,7 +153,8 @@ void main() {
         text: 'What planet is the Red Planet?',
         options: ['Venus', 'Mars', 'Jupiter', 'Saturn'],
         correctIndex: 1,
-        difficulty: Difficulty.medium,
+        difficulty: 'medium',
+        score: 400,
       );
 
       final result = QuestionModel.fromEntity(entity);
@@ -87,6 +164,27 @@ void main() {
       expect(result.options, entity.options);
       expect(result.correctIndex, entity.correctIndex);
       expect(result.difficulty, entity.difficulty);
+      expect(result.score, entity.score);
+    });
+
+    group('defaultScore', () {
+      test('returns 200 for easy', () {
+        expect(QuestionModel.defaultScore('easy'), 200);
+      });
+
+      test('returns 400 for medium', () {
+        expect(QuestionModel.defaultScore('medium'), 400);
+      });
+
+      test('returns 600 for hard', () {
+        expect(QuestionModel.defaultScore('hard'), 600);
+      });
+
+      test('returns 400 for unknown labels', () {
+        expect(QuestionModel.defaultScore('nightmare'), 400);
+        expect(QuestionModel.defaultScore('bonus round'), 400);
+        expect(QuestionModel.defaultScore(''), 400);
+      });
     });
   });
 }

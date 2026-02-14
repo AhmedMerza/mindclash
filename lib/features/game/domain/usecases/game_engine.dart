@@ -1,4 +1,3 @@
-import 'package:mindclash/features/game/domain/entities/difficulty.dart';
 import 'package:mindclash/features/game/domain/entities/game_action.dart';
 import 'package:mindclash/features/game/domain/entities/game_config.dart';
 import 'package:mindclash/features/game/domain/entities/game_data.dart';
@@ -101,7 +100,7 @@ class GameEngine {
         ? _updatePlayerScore(
             data.players,
             data.currentPlayerIndex,
-            _calculateScore(question.difficulty),
+            question.score,
           )
         : data.players;
 
@@ -172,15 +171,6 @@ class GameEngine {
         else
           players[i],
     ];
-  }
-
-  /// Maps difficulty to point value: easy=200, medium=400, hard=600.
-  int _calculateScore(Difficulty difficulty) {
-    return switch (difficulty) {
-      Difficulty.easy => 200,
-      Difficulty.medium => 400,
-      Difficulty.hard => 600,
-    };
   }
 
   /// Throws a [StateError] for invalid state/action combinations.

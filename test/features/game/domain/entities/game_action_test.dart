@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mindclash/features/game/domain/entities/difficulty.dart';
 import 'package:mindclash/features/game/domain/entities/game_action.dart';
 import 'package:mindclash/features/game/domain/entities/game_config.dart';
 import 'package:mindclash/features/game/domain/entities/player.dart';
@@ -17,7 +16,8 @@ void main() {
             text: 'Q?',
             options: ['A', 'B', 'C', 'D'],
             correctIndex: 0,
-            difficulty: Difficulty.easy,
+            difficulty: 'easy',
+            score: 200,
           ),
         ],
       );

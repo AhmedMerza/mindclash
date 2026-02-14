@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mindclash/features/game/domain/entities/difficulty.dart';
 import 'package:mindclash/features/game/domain/entities/game_action.dart';
 import 'package:mindclash/features/game/domain/entities/game_config.dart';
 import 'package:mindclash/features/game/domain/entities/game_data.dart';
@@ -22,7 +21,8 @@ void main() {
     text: 'Easy?',
     options: ['A', 'B', 'C', 'D'],
     correctIndex: 0,
-    difficulty: Difficulty.easy,
+    difficulty: 'easy',
+    score: 200,
   );
 
   const mediumQuestion = Question(
@@ -30,7 +30,8 @@ void main() {
     text: 'Medium?',
     options: ['A', 'B', 'C', 'D'],
     correctIndex: 1,
-    difficulty: Difficulty.medium,
+    difficulty: 'medium',
+    score: 400,
   );
 
   const hardQuestion = Question(
@@ -38,7 +39,8 @@ void main() {
     text: 'Hard?',
     options: ['A', 'B', 'C', 'D'],
     correctIndex: 2,
-    difficulty: Difficulty.hard,
+    difficulty: 'hard',
+    score: 600,
   );
 
   const extraQuestion = Question(
@@ -46,10 +48,11 @@ void main() {
     text: 'Extra?',
     options: ['A', 'B', 'C', 'D'],
     correctIndex: 3,
-    difficulty: Difficulty.easy,
+    difficulty: 'easy',
+    score: 200,
   );
 
-  // 2 rounds × 2 questions = 4 questions needed
+  // 2 rounds x 2 questions = 4 questions needed
   const testConfig = GameConfig(numberOfRounds: 2, questionsPerRound: 2);
   const testQuestions = [
     easyQuestion,
@@ -168,6 +171,34 @@ void main() {
       expect(data.players[0].score, 600);
     });
 
+    test('custom score question awards its score value', () {
+      const expertQuestion = Question(
+        id: 'q_expert',
+        text: 'Expert?',
+        options: ['A', 'B', 'C', 'D'],
+        correctIndex: 0,
+        difficulty: 'expert',
+        score: 1000,
+      );
+      const config = GameConfig(numberOfRounds: 1, questionsPerRound: 1);
+      final state = engine.process(
+        const GameState.initial(),
+        const GameAction.startGame(
+          players: players,
+          config: config,
+          questions: [expertQuestion],
+        ),
+      );
+
+      final next = engine.process(
+        state,
+        const GameAction.answerQuestion(selectedIndex: 0),
+      );
+
+      final data = roundEndData(next);
+      expect(data.players[0].score, 1000);
+    });
+
     test('wrong answer awards 0 points', () {
       final playing = startGame();
       final next = engine.process(
@@ -204,7 +235,7 @@ void main() {
       );
 
       final data = playingData(next);
-      expect(data.currentPlayerIndex, 1); // Alice→Bob
+      expect(data.currentPlayerIndex, 1); // Alice->Bob
     });
 
     test('player index wraps around to 0', () {
@@ -873,7 +904,7 @@ void main() {
         roundEnd,
         const GameAction.nextRound(),
       );
-      // Round 2, question index 0 → global index 2 (hard, correctIndex=2)
+      // Round 2, question index 0 -> global index 2 (hard, correctIndex=2)
       final afterR2Q0 = engine.process(
         round2,
         const GameAction.answerQuestion(selectedIndex: 2), // Alice +600

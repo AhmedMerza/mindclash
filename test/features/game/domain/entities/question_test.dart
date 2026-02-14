@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mindclash/features/game/domain/entities/difficulty.dart';
 import 'package:mindclash/features/game/domain/entities/question.dart';
 
 void main() {
@@ -9,7 +8,8 @@ void main() {
       text: 'What is the speed of light?',
       options: ['299,792 km/s', '150,000 km/s', '1,080 km/h', '343 m/s'],
       correctIndex: 0,
-      difficulty: Difficulty.medium,
+      difficulty: 'medium',
+      score: 400,
     );
 
     test('constructs with all fields', () {
@@ -17,7 +17,8 @@ void main() {
       expect(question.text, 'What is the speed of light?');
       expect(question.options, hasLength(4));
       expect(question.correctIndex, 0);
-      expect(question.difficulty, Difficulty.medium);
+      expect(question.difficulty, 'medium');
+      expect(question.score, 400);
     });
 
     test('two questions with same fields are equal', () {
@@ -26,7 +27,8 @@ void main() {
         text: 'What is the speed of light?',
         options: ['299,792 km/s', '150,000 km/s', '1,080 km/h', '343 m/s'],
         correctIndex: 0,
-        difficulty: Difficulty.medium,
+        difficulty: 'medium',
+        score: 400,
       );
 
       expect(question, other);
