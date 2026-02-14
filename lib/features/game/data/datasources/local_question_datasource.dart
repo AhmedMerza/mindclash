@@ -7,8 +7,8 @@ import 'package:mindclash/features/game/data/models/question_model.dart';
 
 /// Loads trivia questions from bundled JSON assets.
 ///
-/// Reads files at `assets/questions/<category>.json`. Accepts an optional
-/// [AssetBundle] for testability — production code falls back to
+/// Reads files at `assets/questions/<locale>/<category>.json`. Accepts an
+/// optional [AssetBundle] for testability — production code falls back to
 /// [rootBundle].
 class LocalQuestionDataSource implements QuestionDataSource {
   /// Creates a [LocalQuestionDataSource] with an optional [bundle] override.
@@ -19,10 +19,15 @@ class LocalQuestionDataSource implements QuestionDataSource {
   AssetBundle get _effectiveBundle => _bundle ?? rootBundle;
 
   @override
-  Future<List<QuestionModel>> getQuestions(String category) async {
+  Future<List<QuestionModel>> getQuestions(
+    String category, {
+    required String locale,
+  }) async {
+    assert(locale.isNotEmpty, 'locale must not be empty');
+    assert(category.isNotEmpty, 'category must not be empty');
     try {
       final jsonString = await _effectiveBundle.loadString(
-        'assets/questions/$category.json',
+        'assets/questions/$locale/$category.json',
       );
       final decoded = json.decode(jsonString) as List<dynamic>;
       return decoded

@@ -36,7 +36,7 @@ lib/
 └── main.dart
 
 test/                           # Mirrors lib/ structure with _test.dart suffix
-assets/questions/               # Local JSON question files (Phase 1)
+assets/questions/<locale>/      # Local JSON question files per locale (Phase 1)
 ```
 
 ## Naming Conventions
@@ -94,9 +94,12 @@ Use mocktail for mocks. Arrange/Act/Assert pattern.
 
 ## Questions Schema (Phase 1)
 
-Local JSON in `assets/questions/<category>.json`:
-- `id`: unique, category-prefixed (`sci_001`)
+Local JSON in `assets/questions/<locale>/<category>.json` (e.g. `en/science.json`, `ar/science.json`):
+- `id`: unique, category-prefixed (`sci_001`) — same IDs across locales
 - `text`: plain text question
 - `options`: exactly 4 strings
 - `correctIndex`: 0-based
-- `difficulty`: `"easy"` | `"medium"` | `"hard"`
+- `difficulty`: free-form string (e.g. `"easy"`, `"hard"`, `"nightmare"`)
+- `score` *(optional)*: explicit point value. When omitted, defaults by label: `easy`=200, `medium`=400, `hard`=600, anything else=400
+
+**Locale threading:** `locale` is a required parameter on `QuestionDataSource.getQuestions()` and `QuestionRepository.getQuestions()`. Adding a language = adding a folder with JSON files, zero model/code-gen changes.

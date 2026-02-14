@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mindclash/features/game/data/datasources/local_question_datasource.dart';
-import 'package:mindclash/features/game/domain/entities/difficulty.dart';
 
 void main() {
   group('LocalQuestionDataSource', () {
@@ -35,16 +34,30 @@ void main() {
       },
     ];
 
+    final arabicQuestions = [
+      {
+        'id': 'sci_001',
+        'text': 'ما هو الرمز الكيميائي للماء؟',
+        'options': ['H2O', 'CO2', 'NaCl', 'O2'],
+        'correctIndex': 0,
+        'difficulty': 'easy',
+      },
+    ];
+
     setUp(() {
       bundle = _FakeAssetBundle({
-        'assets/questions/science.json': json.encode(sampleQuestions),
+        'assets/questions/en/science.json': json.encode(sampleQuestions),
+        'assets/questions/ar/science.json': json.encode(arabicQuestions),
       });
       datasource = LocalQuestionDataSource(bundle: bundle);
     });
 
     group('getQuestions', () {
       test('returns parsed models for existing category', () async {
-        final result = await datasource.getQuestions('science');
+        final result = await datasource.getQuestions(
+          'science',
+          locale: 'en',
+        );
 
         expect(result, hasLength(3));
         expect(result[0].id, 'sci_001');
@@ -54,28 +67,102 @@ void main() {
       });
 
       test('returns empty list for non-existent category', () async {
-        final result = await datasource.getQuestions('history');
+        final result = await datasource.getQuestions(
+          'history',
+          locale: 'en',
+        );
 
         expect(result, isEmpty);
       });
 
-      test('parses all difficulty levels', () async {
-        final result = await datasource.getQuestions('science');
+      test('parses difficulty as string', () async {
+        final result = await datasource.getQuestions(
+          'science',
+          locale: 'en',
+        );
 
-        expect(result[0].difficulty, Difficulty.easy);
-        expect(result[1].difficulty, Difficulty.medium);
-        expect(result[2].difficulty, Difficulty.hard);
+        expect(result[0].difficulty, 'easy');
+        expect(result[1].difficulty, 'medium');
+        expect(result[2].difficulty, 'hard');
+      });
+
+      test('parses optional score field when present', () async {
+        final questionsWithScore = [
+          {
+            'id': 'sci_001',
+            'text': 'Q?',
+            'options': ['A', 'B', 'C', 'D'],
+            'correctIndex': 0,
+            'difficulty': 'easy',
+            'score': 500,
+          },
+        ];
+        final scoreBundle = _FakeAssetBundle({
+          'assets/questions/en/science.json':
+              json.encode(questionsWithScore),
+        });
+        final scoreDatasource = LocalQuestionDataSource(bundle: scoreBundle);
+
+        final result = await scoreDatasource.getQuestions(
+          'science',
+          locale: 'en',
+        );
+
+        expect(result[0].score, 500);
+      });
+
+      test('score is null when not present in JSON', () async {
+        final result = await datasource.getQuestions(
+          'science',
+          locale: 'en',
+        );
+
+        expect(result[0].score, isNull);
+      });
+
+      test('loads correct locale file for Arabic', () async {
+        final result = await datasource.getQuestions(
+          'science',
+          locale: 'ar',
+        );
+
+        expect(result, hasLength(1));
+        expect(result[0].id, 'sci_001');
+        expect(result[0].text, 'ما هو الرمز الكيميائي للماء؟');
+      });
+
+      test('returns empty list for missing locale', () async {
+        final result = await datasource.getQuestions(
+          'science',
+          locale: 'fr',
+        );
+
+        expect(result, isEmpty);
+      });
+
+      test('asserts on empty locale', () {
+        expect(
+          () => datasource.getQuestions('science', locale: ''),
+          throwsA(isA<AssertionError>()),
+        );
+      });
+
+      test('asserts on empty category', () {
+        expect(
+          () => datasource.getQuestions('', locale: 'en'),
+          throwsA(isA<AssertionError>()),
+        );
       });
     });
 
     test('getQuestions propagates FormatException on malformed JSON', () async {
       final badBundle = _FakeAssetBundle({
-        'assets/questions/broken.json': '{not valid json array',
+        'assets/questions/en/broken.json': '{not valid json array',
       });
       final badDatasource = LocalQuestionDataSource(bundle: badBundle);
 
       expect(
-        () => badDatasource.getQuestions('broken'),
+        () => badDatasource.getQuestions('broken', locale: 'en'),
         throwsA(isA<FormatException>()),
       );
     });

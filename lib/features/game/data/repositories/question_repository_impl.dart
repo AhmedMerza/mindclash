@@ -1,5 +1,4 @@
 import 'package:mindclash/features/game/data/datasources/question_datasource.dart';
-import 'package:mindclash/features/game/domain/entities/difficulty.dart';
 import 'package:mindclash/features/game/domain/entities/question.dart';
 import 'package:mindclash/features/game/domain/repositories/question_repository.dart';
 
@@ -16,7 +15,8 @@ class QuestionRepositoryImpl implements QuestionRepository {
 
   final List<QuestionDataSource> _sources;
 
-  /// Returns questions for [category], optionally filtered by [difficulty].
+  /// Returns questions for [category] in the given [locale], optionally
+  /// filtered by [difficulty].
   ///
   /// Sources are queried in order — the first source that has *any*
   /// questions for [category] wins. Difficulty filtering is applied
@@ -27,10 +27,11 @@ class QuestionRepositoryImpl implements QuestionRepository {
   @override
   Future<List<Question>> getQuestions({
     required String category,
-    Difficulty? difficulty,
+    required String locale,
+    String? difficulty,
   }) async {
     for (final source in _sources) {
-      final models = await source.getQuestions(category);
+      final models = await source.getQuestions(category, locale: locale);
       if (models.isNotEmpty) {
         var entities = models.map((m) => m.toEntity()).toList();
         if (difficulty != null) {

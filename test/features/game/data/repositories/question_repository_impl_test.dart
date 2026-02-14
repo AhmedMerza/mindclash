@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mindclash/features/game/data/datasources/question_datasource.dart';
 import 'package:mindclash/features/game/data/models/question_model.dart';
 import 'package:mindclash/features/game/data/repositories/question_repository_impl.dart';
-import 'package:mindclash/features/game/domain/entities/difficulty.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockQuestionDataSource extends Mock implements QuestionDataSource {}
@@ -17,7 +16,7 @@ void main() {
       text: 'Easy question',
       options: ['A', 'B', 'C', 'D'],
       correctIndex: 0,
-      difficulty: Difficulty.easy,
+      difficulty: 'easy',
     );
 
     const mediumModel = QuestionModel(
@@ -25,7 +24,7 @@ void main() {
       text: 'Medium question',
       options: ['A', 'B', 'C', 'D'],
       correctIndex: 1,
-      difficulty: Difficulty.medium,
+      difficulty: 'medium',
     );
 
     const hardModel = QuestionModel(
@@ -33,7 +32,7 @@ void main() {
       text: 'Hard question',
       options: ['A', 'B', 'C', 'D'],
       correctIndex: 2,
-      difficulty: Difficulty.hard,
+      difficulty: 'hard',
     );
 
     final allModels = [easyModel, mediumModel, hardModel];
@@ -45,12 +44,15 @@ void main() {
 
     group('getQuestions', () {
       test('with single source returns mapped entities', () async {
-        when(() => primarySource.getQuestions('science'))
+        when(() => primarySource.getQuestions('science', locale: 'en'))
             .thenAnswer((_) async => allModels);
         final repo =
             QuestionRepositoryImpl(sources: [primarySource]);
 
-        final result = await repo.getQuestions(category: 'science');
+        final result = await repo.getQuestions(
+          category: 'science',
+          locale: 'en',
+        );
 
         expect(result, hasLength(3));
         expect(result[0].id, 'sci_001');
@@ -59,73 +61,101 @@ void main() {
       });
 
       test('with multiple sources returns from first non-empty', () async {
-        when(() => primarySource.getQuestions('science'))
+        when(() => primarySource.getQuestions('science', locale: 'en'))
             .thenAnswer((_) async => allModels);
-        when(() => fallbackSource.getQuestions('science'))
+        when(() => fallbackSource.getQuestions('science', locale: 'en'))
             .thenAnswer((_) async => [easyModel]);
         final repo = QuestionRepositoryImpl(
           sources: [primarySource, fallbackSource],
         );
 
-        final result = await repo.getQuestions(category: 'science');
+        final result = await repo.getQuestions(
+          category: 'science',
+          locale: 'en',
+        );
 
         expect(result, hasLength(3));
-        verifyNever(() => fallbackSource.getQuestions('science'));
+        verifyNever(
+          () => fallbackSource.getQuestions('science', locale: 'en'),
+        );
       });
 
       test('skips empty source and uses fallback', () async {
-        when(() => primarySource.getQuestions('science'))
+        when(() => primarySource.getQuestions('science', locale: 'en'))
             .thenAnswer((_) async => []);
-        when(() => fallbackSource.getQuestions('science'))
+        when(() => fallbackSource.getQuestions('science', locale: 'en'))
             .thenAnswer((_) async => [easyModel]);
         final repo = QuestionRepositoryImpl(
           sources: [primarySource, fallbackSource],
         );
 
-        final result = await repo.getQuestions(category: 'science');
+        final result = await repo.getQuestions(
+          category: 'science',
+          locale: 'en',
+        );
 
         expect(result, hasLength(1));
         expect(result[0].id, 'sci_001');
       });
 
       test('with all sources empty returns empty list', () async {
-        when(() => primarySource.getQuestions('science'))
+        when(() => primarySource.getQuestions('science', locale: 'en'))
             .thenAnswer((_) async => []);
-        when(() => fallbackSource.getQuestions('science'))
+        when(() => fallbackSource.getQuestions('science', locale: 'en'))
             .thenAnswer((_) async => []);
         final repo = QuestionRepositoryImpl(
           sources: [primarySource, fallbackSource],
         );
 
-        final result = await repo.getQuestions(category: 'science');
+        final result = await repo.getQuestions(
+          category: 'science',
+          locale: 'en',
+        );
 
         expect(result, isEmpty);
       });
 
       test('filters by difficulty when specified', () async {
-        when(() => primarySource.getQuestions('science'))
+        when(() => primarySource.getQuestions('science', locale: 'en'))
             .thenAnswer((_) async => allModels);
         final repo =
             QuestionRepositoryImpl(sources: [primarySource]);
 
         final result = await repo.getQuestions(
           category: 'science',
-          difficulty: Difficulty.medium,
+          locale: 'en',
+          difficulty: 'medium',
         );
 
         expect(result, hasLength(1));
-        expect(result[0].difficulty, Difficulty.medium);
+        expect(result[0].difficulty, 'medium');
       });
 
       test('returns all when no difficulty filter', () async {
-        when(() => primarySource.getQuestions('science'))
+        when(() => primarySource.getQuestions('science', locale: 'en'))
             .thenAnswer((_) async => allModels);
         final repo =
             QuestionRepositoryImpl(sources: [primarySource]);
 
-        final result = await repo.getQuestions(category: 'science');
+        final result = await repo.getQuestions(
+          category: 'science',
+          locale: 'en',
+        );
 
         expect(result, hasLength(3));
+      });
+
+      test('passes locale through to source', () async {
+        when(() => primarySource.getQuestions('science', locale: 'ar'))
+            .thenAnswer((_) async => [easyModel]);
+        final repo =
+            QuestionRepositoryImpl(sources: [primarySource]);
+
+        await repo.getQuestions(category: 'science', locale: 'ar');
+
+        verify(
+          () => primarySource.getQuestions('science', locale: 'ar'),
+        ).called(1);
       });
 
       test(
@@ -135,9 +165,9 @@ void main() {
           // Primary has easy only, fallback has hard.
           // Filtering for hard should return [] — primary is
           // authoritative for the category once it returns non-empty.
-          when(() => primarySource.getQuestions('science'))
+          when(() => primarySource.getQuestions('science', locale: 'en'))
               .thenAnswer((_) async => [easyModel]);
-          when(() => fallbackSource.getQuestions('science'))
+          when(() => fallbackSource.getQuestions('science', locale: 'en'))
               .thenAnswer((_) async => [hardModel]);
           final repo = QuestionRepositoryImpl(
             sources: [primarySource, fallbackSource],
@@ -145,11 +175,14 @@ void main() {
 
           final result = await repo.getQuestions(
             category: 'science',
-            difficulty: Difficulty.hard,
+            locale: 'en',
+            difficulty: 'hard',
           );
 
           expect(result, isEmpty);
-          verifyNever(() => fallbackSource.getQuestions('science'));
+          verifyNever(
+            () => fallbackSource.getQuestions('science', locale: 'en'),
+          );
         },
       );
     });
