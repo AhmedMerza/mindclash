@@ -67,6 +67,9 @@ void main() {
               teamNames: ['Alice', 'Bob'],
               locale: 'en',
               numberOfRounds: 3,
+              selectedCategories: {'science'},
+              randomCategory: false,
+              randomDifficulty: false,
             );
 
         final state = container.read(gameProvider);
@@ -81,6 +84,9 @@ void main() {
               teamNames: ['Alice', 'Bob'],
               locale: 'en',
               numberOfRounds: 3,
+              selectedCategories: {'science'},
+              randomCategory: false,
+              randomDifficulty: false,
             );
 
         final state = container.read(gameProvider);
@@ -101,6 +107,9 @@ void main() {
               teamNames: ['Alice', 'Bob'],
               locale: 'en',
               numberOfRounds: 3,
+              selectedCategories: {'science'},
+              randomCategory: false,
+              randomDifficulty: false,
             );
       });
 
@@ -200,12 +209,15 @@ void main() {
               teamNames: ['Alice', 'Bob'],
               locale: 'en',
               numberOfRounds: 3,
+              selectedCategories: {'science'},
+              randomCategory: false,
+              randomDifficulty: false,
             );
       });
 
-      test('currentQuestion returns a valid question', () {
-        final question =
-            container.read(gameProvider.notifier).currentQuestion;
+      test('currentQuestion is cached after showQuestion', () {
+        container.read(gameProvider.notifier).showQuestion();
+        final question = container.read(gameProvider).currentQuestion;
 
         expect(question, isNotNull);
         expect(question!.id, startsWith('q_'));
@@ -239,9 +251,10 @@ void main() {
         );
         addTearDown(freshContainer.dispose);
 
+        final state = freshContainer.read(gameProvider);
         final notifier = freshContainer.read(gameProvider.notifier);
 
-        expect(notifier.currentQuestion, isNull);
+        expect(state.currentQuestion, isNull);
         expect(notifier.currentTeam, isNull);
         expect(notifier.sortedTeamsByScore, isEmpty);
       });
@@ -255,6 +268,9 @@ void main() {
               teamNames: ['Alice', 'Bob'],
               locale: 'en',
               numberOfRounds: 3,
+              selectedCategories: {'science'},
+              randomCategory: false,
+              randomDifficulty: false,
             );
       });
 
@@ -290,6 +306,9 @@ void main() {
         teamNames: ['Alice', 'Bob'],
         locale: 'en',
         numberOfRounds: 3,
+        selectedCategories: {'science'},
+        randomCategory: true,
+        randomDifficulty: true,
       );
 
       // 2 players → questionsPerRound = 4 (adjusted from 5)
@@ -323,6 +342,157 @@ void main() {
 
       final sorted = notifier.sortedTeamsByScore;
       expect(sorted.first.score, greaterThan(0));
+    });
+
+    group('question selection', () {
+      test('selects questions and tracks used IDs', () async {
+        _stubRepoWith(mockRepo, _testQuestions(10));
+
+        await container.read(gameProvider.notifier).startGame(
+          teamNames: ['Alice', 'Bob'],
+          locale: 'en',
+          numberOfRounds: 1,
+          selectedCategories: {'science'},
+          randomCategory: true,
+          randomDifficulty: true,
+        );
+
+        final notifier = container.read(gameProvider.notifier);
+
+        // Show first question
+        notifier.showQuestion();
+        final state1 = container.read(gameProvider);
+        final q1 = state1.currentQuestion;
+        expect(q1, isNotNull);
+        expect(state1.usedQuestionIds, isEmpty); // Not marked used until answered
+
+        // Answer first question
+        notifier.answerQuestion(0);
+        final state2 = container.read(gameProvider);
+        expect(state2.usedQuestionIds, contains(q1!.id));
+
+        // Continue and show second question
+        notifier.continueToNext();
+        notifier.showQuestion();
+        final state3 = container.read(gameProvider);
+        final q2 = state3.currentQuestion;
+        expect(q2, isNotNull);
+        expect(q2!.id, isNot(q1.id)); // Different question
+
+        // Answer second question
+        notifier.answerQuestion(0);
+        final state4 = container.read(gameProvider);
+        expect(state4.usedQuestionIds, containsAll([q1.id, q2.id]));
+      });
+
+      test('preference methods update state correctly', () async {
+        _stubRepoWith(mockRepo, _testQuestions(10));
+
+        await container.read(gameProvider.notifier).startGame(
+          teamNames: ['Alice', 'Bob'],
+          locale: 'en',
+          numberOfRounds: 1,
+          selectedCategories: {'science'},
+          randomCategory: false,
+          randomDifficulty: false,
+        );
+
+        final notifier = container.read(gameProvider.notifier);
+
+        // Set category preference
+        notifier.setCategoryPreference('history');
+        expect(
+          container.read(gameProvider).nextQuestionPreference?.category,
+          'history',
+        );
+
+        // Set difficulty preference
+        notifier.setDifficultyPreference('hard');
+        expect(
+          container.read(gameProvider).nextQuestionPreference?.difficulty,
+          'hard',
+        );
+
+        // Randomize category (clears preference)
+        notifier.randomizeCategory();
+        expect(
+          container.read(gameProvider).nextQuestionPreference?.category,
+          isNull,
+        );
+
+        // Randomize difficulty (clears preference)
+        notifier.randomizeDifficulty();
+        expect(
+          container.read(gameProvider).nextQuestionPreference?.difficulty,
+          isNull,
+        );
+      });
+
+      test('toggle methods switch random modes mid-game', () async {
+        _stubRepoWith(mockRepo, _testQuestions(10));
+
+        await container.read(gameProvider.notifier).startGame(
+          teamNames: ['Alice', 'Bob'],
+          locale: 'en',
+          numberOfRounds: 1,
+          selectedCategories: {'science'},
+          randomCategory: false,
+          randomDifficulty: false,
+        );
+
+        final notifier = container.read(gameProvider.notifier);
+
+        // Initially NOT random (new default)
+        var data = (container.read(gameProvider).engineState as GamePlaying).data;
+        expect(data.config.randomCategory, isFalse);
+        expect(data.config.randomDifficulty, isFalse);
+
+        // Toggle on
+        notifier.toggleRandomCategory();
+        data = (container.read(gameProvider).engineState as GamePlaying).data;
+        expect(data.config.randomCategory, isTrue);
+
+        notifier.toggleRandomDifficulty();
+        data = (container.read(gameProvider).engineState as GamePlaying).data;
+        expect(data.config.randomDifficulty, isTrue);
+
+        // Toggle back off
+        notifier.toggleRandomCategory();
+        data = (container.read(gameProvider).engineState as GamePlaying).data;
+        expect(data.config.randomCategory, isFalse);
+
+        notifier.toggleRandomDifficulty();
+        data = (container.read(gameProvider).engineState as GamePlaying).data;
+        expect(data.config.randomDifficulty, isFalse);
+      });
+
+      test('currentQuestion cleared after continueToNext', () async {
+        _stubRepoWith(mockRepo, _testQuestions(10));
+
+        await container.read(gameProvider.notifier).startGame(
+          teamNames: ['Alice', 'Bob'],
+          locale: 'en',
+          numberOfRounds: 1,
+          selectedCategories: {'science'},
+          randomCategory: false,
+          randomDifficulty: false,
+        );
+
+        final notifier = container.read(gameProvider.notifier);
+
+        // Show and answer question
+        notifier
+          ..showQuestion()
+          ..answerQuestion(0);
+
+        // Question should still be cached during result phase
+        expect(container.read(gameProvider).currentQuestion, isNotNull);
+
+        // Continue to next - question should be cleared
+        notifier.continueToNext();
+        expect(container.read(gameProvider).currentQuestion, isNull);
+        expect(container.read(gameProvider).nextQuestionPreference, isNull);
+      });
     });
   });
 }

@@ -170,7 +170,13 @@ void main() {
     test('getCategories returns hardcoded list', () async {
       final result = await datasource.getCategories();
 
-      expect(result, ['science']);
+      expect(result, [
+        'science',
+        'geography',
+        'history',
+        'sports',
+        'general_knowledge',
+      ]);
     });
   });
 }

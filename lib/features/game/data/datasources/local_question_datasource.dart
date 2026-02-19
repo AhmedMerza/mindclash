@@ -48,6 +48,12 @@ class LocalQuestionDataSource implements QuestionDataSource {
     //   - Manifest file listing categories
     //   - Directory listing from a remote source
     //   - Database query
-    return ['science'];
+    return [
+      'science',
+      'geography',
+      'history',
+      'sports',
+      'general_knowledge',
+    ];
   }
 }

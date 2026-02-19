@@ -8,6 +8,7 @@ import 'package:mindclash/core/theme/app_spacing.dart';
 import 'package:mindclash/core/theme/app_typography.dart';
 import 'package:mindclash/features/game/presentation/constants/game_constants.dart';
 import 'package:mindclash/features/game/presentation/providers/game_notifier_provider.dart';
+import 'package:mindclash/features/game/presentation/providers/question_repository_provider.dart';
 import 'package:mindclash/features/game/presentation/providers/setup_notifier_provider.dart';
 import 'package:mindclash/features/game/presentation/screens/game_screen.dart';
 
@@ -22,6 +23,8 @@ class SetupScreen extends ConsumerStatefulWidget {
 
 class _SetupScreenState extends ConsumerState<SetupScreen> {
   final _controllers = <TextEditingController>[];
+  List<String>? _availableCategories;
+  bool _loadingCategories = true;
 
   @override
   void initState() {
@@ -29,6 +32,41 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
     _controllers
       ..add(TextEditingController())
       ..add(TextEditingController());
+    _loadCategories();
+  }
+
+  /// Loads available categories from the repository.
+  Future<void> _loadCategories() async {
+    try {
+      final repo = ref.read(questionRepositoryProvider);
+      final categories = await repo.getCategories();
+      if (mounted) {
+        setState(() {
+          _availableCategories = categories;
+          _loadingCategories = false;
+        });
+      }
+    } catch (e) {
+      debugPrint('Error loading categories: $e');
+      if (mounted) {
+        setState(() {
+          _availableCategories = [];
+          _loadingCategories = false;
+        });
+      }
+    }
+  }
+
+  /// Returns a human-readable display name for a category.
+  String _categoryDisplayName(String category) {
+    return switch (category) {
+      'science' => 'Science',
+      'geography' => 'Geography',
+      'history' => 'History',
+      'sports' => 'Sports',
+      'general_knowledge' => 'General',
+      _ => category,
+    };
   }
 
   @override
@@ -66,6 +104,9 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
         teamNames: trimmedNames,
         locale: setupState.locale,
         numberOfRounds: setupState.numberOfRounds,
+        selectedCategories: setupState.selectedCategories,
+        randomCategory: setupState.randomCategory,
+        randomDifficulty: setupState.randomDifficulty,
       );
 
       if (!mounted) return;
@@ -202,6 +243,121 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
                 selectedBackgroundColor: AppColors.primary,
                 selectedForegroundColor: AppColors.textPrimary,
                 foregroundColor: AppColors.textSecondary,
+              ),
+            ),
+
+            const SizedBox(height: AppSpacing.xl),
+
+            const Text('Categories', style: AppTypography.subheading),
+            const SizedBox(height: AppSpacing.md),
+            if (_loadingCategories)
+              const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(AppSpacing.lg),
+                  child: CircularProgressIndicator(),
+                ),
+              )
+            else if (_availableCategories == null ||
+                _availableCategories!.isEmpty)
+              const Text(
+                'No categories available',
+                style: AppTypography.bodySmall,
+              )
+            else
+              Wrap(
+                spacing: AppSpacing.sm,
+                runSpacing: AppSpacing.sm,
+                children: _availableCategories!.map((category) {
+                  final isSelected =
+                      setupState.selectedCategories.contains(category);
+                  return FilterChip(
+                    label: Text(_categoryDisplayName(category)),
+                    selected: isSelected,
+                    onSelected: (selected) {
+                      final newSet = {...setupState.selectedCategories};
+                      if (selected) {
+                        newSet.add(category);
+                      } else if (newSet.length > 1) {
+                        // Enforce minimum 1 category
+                        newSet.remove(category);
+                      }
+                      notifier.setSelectedCategories(newSet);
+                    },
+                    backgroundColor: AppColors.surface,
+                    selectedColor: AppColors.primary,
+                    checkmarkColor: AppColors.textPrimary,
+                    labelStyle: AppTypography.bodySmall.copyWith(
+                      color: isSelected
+                          ? AppColors.textPrimary
+                          : AppColors.textSecondary,
+                    ),
+                  );
+                }).toList(),
+              ),
+
+            const SizedBox(height: AppSpacing.xl),
+
+            // Advanced Settings - Collapsible
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.surface,
+                borderRadius: AppRadius.lgAll,
+              ),
+              child: ExpansionTile(
+                title: const Text(
+                  'Advanced Settings',
+                  style: AppTypography.subheading,
+                ),
+                subtitle: const Text(
+                  'Question randomization options',
+                  style: AppTypography.caption,
+                ),
+                backgroundColor: AppColors.surface,
+                collapsedBackgroundColor: AppColors.surface,
+                shape: RoundedRectangleBorder(
+                  borderRadius: AppRadius.lgAll,
+                ),
+                collapsedShape: RoundedRectangleBorder(
+                  borderRadius: AppRadius.lgAll,
+                ),
+                children: [
+                  SwitchListTile(
+                    title: const Text(
+                      'Random Category',
+                      style: AppTypography.body,
+                    ),
+                    subtitle: Text(
+                      'Auto-select category during gameplay',
+                      style: AppTypography.caption.copyWith(
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
+                    value: setupState.randomCategory,
+                    onChanged: notifier.setRandomCategory,
+                    activeThumbColor: AppColors.primary,
+                  ),
+                  Divider(
+                    color: AppColors.textDisabled.withValues(alpha: 0.2),
+                    height: 1,
+                    thickness: 1,
+                  ),
+                  SwitchListTile(
+                    title: const Text(
+                      'Random Difficulty',
+                      style: AppTypography.body,
+                    ),
+                    subtitle: Text(
+                      'Auto-select difficulty during gameplay',
+                      style: AppTypography.caption.copyWith(
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
+                    value: setupState.randomDifficulty,
+                    onChanged: notifier.setRandomDifficulty,
+                    activeThumbColor: AppColors.primary,
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+                ],
               ),
             ),
 

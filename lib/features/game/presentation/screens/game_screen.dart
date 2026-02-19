@@ -42,7 +42,7 @@ class GameScreen extends ConsumerWidget {
                     onShowQuestion: notifier.showQuestion,
                   ),
                 PlayAnswering() => QuestionWidget(
-                    question: notifier.currentQuestion!,
+                    question: uiState.currentQuestion!,
                     data: data,
                     onAnswer: notifier.answerQuestion,
                     onSkip: notifier.skipQuestion,
@@ -78,6 +78,94 @@ class GameScreen extends ConsumerWidget {
                   );
                 },
               ),
+          },
+        ),
+        // Settings button — only shown during gameplay
+        floatingActionButton: switch (uiState.engineState) {
+          GamePlaying() => FloatingActionButton.small(
+              onPressed: () => _showGameSettings(context, ref),
+              backgroundColor: AppColors.surface,
+              foregroundColor: AppColors.textPrimary,
+              child: const Icon(Icons.settings),
+            ),
+          _ => null,
+        },
+      ),
+    );
+  }
+
+  void _showGameSettings(BuildContext context, WidgetRef ref) {
+    unawaited(
+      showDialog<void>(
+        context: context,
+        builder: (dialogContext) => Consumer(
+          builder: (consumerContext, consumerRef, child) {
+            final uiState = consumerRef.watch(gameProvider);
+            final notifier = consumerRef.read(gameProvider.notifier);
+
+            // Get current game data from state
+            final gameData = switch (uiState.engineState) {
+              GamePlaying(:final data) => data,
+              GamePaused(:final data) => data,
+              _ => null,
+            };
+
+            if (gameData == null) {
+              return const AlertDialog(
+                title: Text('Error'),
+                content: Text('Game settings not available'),
+              );
+            }
+
+            return AlertDialog(
+              backgroundColor: AppColors.surface,
+              title: const Text(
+                'Game Settings',
+                style: AppTypography.subheading,
+              ),
+              content: SizedBox(
+                width: 400,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SwitchListTile(
+                        title: const Text(
+                          'Random Category',
+                          style: AppTypography.body,
+                        ),
+                        subtitle: const Text(
+                          'Auto-select category for each question',
+                          style: AppTypography.caption,
+                        ),
+                        value: gameData.config.randomCategory,
+                        onChanged: (value) => notifier.toggleRandomCategory(),
+                        activeThumbColor: AppColors.primary,
+                      ),
+                      SwitchListTile(
+                        title: const Text(
+                          'Random Difficulty',
+                          style: AppTypography.body,
+                        ),
+                        subtitle: const Text(
+                          'Auto-select difficulty for each question',
+                          style: AppTypography.caption,
+                        ),
+                        value: gameData.config.randomDifficulty,
+                        onChanged: (value) => notifier.toggleRandomDifficulty(),
+                        activeThumbColor: AppColors.primary,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(dialogContext).pop(),
+                  child: const Text('Close'),
+                ),
+              ],
+            );
           },
         ),
       ),
