@@ -3,6 +3,7 @@ import 'package:mindclash/core/theme/app_colors.dart';
 import 'package:mindclash/core/theme/app_spacing.dart';
 import 'package:mindclash/core/theme/app_typography.dart';
 import 'package:mindclash/features/game/domain/entities/player.dart';
+import 'package:mindclash/features/game/presentation/constants/game_constants.dart';
 import 'package:mindclash/features/game/presentation/widgets/scoreboard_widget.dart';
 
 /// Final results screen with winner announcement and scoreboard.
@@ -39,7 +40,7 @@ class ResultsWidget extends StatelessWidget {
           children: [
             const Icon(
               Icons.emoji_events,
-              size: 80,
+              size: GameConstants.trophyIconSize,
               color: AppColors.secondary,
             ),
             const SizedBox(height: AppSpacing.lg),

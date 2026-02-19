@@ -3,6 +3,7 @@ import 'package:mindclash/core/theme/app_colors.dart';
 import 'package:mindclash/core/theme/app_spacing.dart';
 import 'package:mindclash/core/theme/app_typography.dart';
 import 'package:mindclash/features/game/domain/entities/game_data.dart';
+import 'package:mindclash/features/game/presentation/constants/game_constants.dart';
 
 /// Pass-the-device screen shown between turns.
 ///
@@ -51,7 +52,7 @@ class HandOffWidget extends StatelessWidget {
               player.name,
               style: AppTypography.heading.copyWith(
                 color: AppColors.secondary,
-                fontSize: 36,
+                fontSize: GameConstants.largeFontSize,
               ),
               textAlign: TextAlign.center,
             ),

@@ -6,6 +6,7 @@ import 'package:mindclash/core/theme/app_colors.dart';
 import 'package:mindclash/core/theme/app_radius.dart';
 import 'package:mindclash/core/theme/app_spacing.dart';
 import 'package:mindclash/core/theme/app_typography.dart';
+import 'package:mindclash/features/game/presentation/constants/game_constants.dart';
 import 'package:mindclash/features/game/presentation/providers/game_notifier_provider.dart';
 import 'package:mindclash/features/game/presentation/providers/setup_notifier_provider.dart';
 import 'package:mindclash/features/game/presentation/screens/game_screen.dart';
@@ -145,7 +146,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
               );
             }),
 
-            if (setupState.playerNames.length < 4)
+            if (setupState.playerNames.length < GameConstants.maxPlayers)
               TextButton.icon(
                 onPressed: notifier.addPlayer,
                 icon: const Icon(Icons.add, color: AppColors.primaryLight),
@@ -214,7 +215,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
             ],
 
             SizedBox(
-              height: 56,
+              height: AppSpacing.buttonHeight,
               child: ElevatedButton(
                 onPressed:
                     setupState.isLoading || !notifier.isValid

@@ -84,8 +84,12 @@ class QuestionWidget extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: AppSpacing.md),
                         child: SizedBox(
                           width: double.infinity,
-                          child: OutlinedButton(
-                            onPressed: () => onAnswer(index),
+                          child: Semantics(
+                            label: 'Option ${index + 1}: '
+                                '${question.options[index]}',
+                            button: true,
+                            child: OutlinedButton(
+                              onPressed: () => onAnswer(index),
                             style: OutlinedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: AppSpacing.lg,
@@ -98,10 +102,11 @@ class QuestionWidget extends StatelessWidget {
                                 borderRadius: AppRadius.lgAll,
                               ),
                             ),
-                            child: Text(
-                              question.options[index],
-                              style: AppTypography.body,
-                              textAlign: TextAlign.center,
+                              child: Text(
+                                question.options[index],
+                                style: AppTypography.body,
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
                         ),

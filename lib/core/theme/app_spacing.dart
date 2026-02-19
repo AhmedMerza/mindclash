@@ -20,4 +20,7 @@ sealed class AppSpacing {
 
   /// 48 logical pixels.
   static const double xxxl = 48;
+
+  /// Standard button height: 56 logical pixels.
+  static const double buttonHeight = 56;
 }
