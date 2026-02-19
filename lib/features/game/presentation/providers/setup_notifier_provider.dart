@@ -12,8 +12,8 @@ abstract class SetupState with _$SetupState {
     /// Player name inputs — starts with 2 empty slots.
     @Default(['', '']) List<String> playerNames,
 
-    /// Selected locale code.
-    @Default('en') String locale,
+    /// Selected locale code (defaults to Arabic).
+    @Default('ar') String locale,
 
     /// Number of rounds.
     @Default(3) int numberOfRounds,
