@@ -64,7 +64,7 @@ void main() {
         _stubRepoWith(mockRepo, _testQuestions(15));
 
         await container.read(gameProvider.notifier).startGame(
-              playerNames: ['Alice', 'Bob'],
+              teamNames: ['Alice', 'Bob'],
               locale: 'en',
               numberOfRounds: 3,
             );
@@ -74,22 +74,22 @@ void main() {
         expect(state.playPhase, isA<PlayHandOff>());
       });
 
-      test('creates players with correct names and IDs', () async {
+      test('creates teams with correct names and IDs', () async {
         _stubRepoWith(mockRepo, _testQuestions(15));
 
         await container.read(gameProvider.notifier).startGame(
-              playerNames: ['Alice', 'Bob'],
+              teamNames: ['Alice', 'Bob'],
               locale: 'en',
               numberOfRounds: 3,
             );
 
         final state = container.read(gameProvider);
         final data = (state.engineState as GamePlaying).data;
-        expect(data.players.length, 2);
-        expect(data.players[0].name, 'Alice');
-        expect(data.players[0].id, 'p1');
-        expect(data.players[1].name, 'Bob');
-        expect(data.players[1].id, 'p2');
+        expect(data.teams.length, 2);
+        expect(data.teams[0].name, 'Alice');
+        expect(data.teams[0].id, 'p1');
+        expect(data.teams[1].name, 'Bob');
+        expect(data.teams[1].id, 'p2');
       });
     });
 
@@ -98,7 +98,7 @@ void main() {
         _stubRepoWith(mockRepo, _testQuestions(15));
 
         await container.read(gameProvider.notifier).startGame(
-              playerNames: ['Alice', 'Bob'],
+              teamNames: ['Alice', 'Bob'],
               locale: 'en',
               numberOfRounds: 3,
             );
@@ -197,7 +197,7 @@ void main() {
         _stubRepoWith(mockRepo, _testQuestions(15));
 
         await container.read(gameProvider.notifier).startGame(
-              playerNames: ['Alice', 'Bob'],
+              teamNames: ['Alice', 'Bob'],
               locale: 'en',
               numberOfRounds: 3,
             );
@@ -211,19 +211,19 @@ void main() {
         expect(question!.id, 'q_1');
       });
 
-      test('currentPlayer returns the first player', () {
-        final player = container.read(gameProvider.notifier).currentPlayer;
+      test('currentTeam returns the first team', () {
+        final team = container.read(gameProvider.notifier).currentTeam;
 
-        expect(player, isNotNull);
-        expect(player!.name, 'Alice');
+        expect(team, isNotNull);
+        expect(team!.name, 'Alice');
       });
 
-      test('sortedPlayersByScore returns players sorted descending', () {
+      test('sortedTeamsByScore returns teams sorted descending', () {
         final notifier = container.read(gameProvider.notifier)
           ..showQuestion()
           ..answerQuestion(0);
 
-        final sorted = notifier.sortedPlayersByScore;
+        final sorted = notifier.sortedTeamsByScore;
         expect(sorted.first.name, 'Alice');
         expect(sorted.first.score, 200);
         expect(sorted.last.name, 'Bob');
@@ -241,8 +241,8 @@ void main() {
         final notifier = freshContainer.read(gameProvider.notifier);
 
         expect(notifier.currentQuestion, isNull);
-        expect(notifier.currentPlayer, isNull);
-        expect(notifier.sortedPlayersByScore, isEmpty);
+        expect(notifier.currentTeam, isNull);
+        expect(notifier.sortedTeamsByScore, isEmpty);
       });
     });
 
@@ -251,7 +251,7 @@ void main() {
         _stubRepoWith(mockRepo, _testQuestions(15));
 
         await container.read(gameProvider.notifier).startGame(
-              playerNames: ['Alice', 'Bob'],
+              teamNames: ['Alice', 'Bob'],
               locale: 'en',
               numberOfRounds: 3,
             );
@@ -286,7 +286,7 @@ void main() {
 
       final notifier = container.read(gameProvider.notifier);
       await notifier.startGame(
-        playerNames: ['Alice', 'Bob'],
+        teamNames: ['Alice', 'Bob'],
         locale: 'en',
         numberOfRounds: 3,
       );
@@ -320,7 +320,7 @@ void main() {
         isA<GameFinished>(),
       );
 
-      final sorted = notifier.sortedPlayersByScore;
+      final sorted = notifier.sortedTeamsByScore;
       expect(sorted.first.score, greaterThan(0));
     });
   });

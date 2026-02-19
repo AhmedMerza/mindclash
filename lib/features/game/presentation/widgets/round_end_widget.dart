@@ -3,7 +3,7 @@ import 'package:mindclash/core/theme/app_colors.dart';
 import 'package:mindclash/core/theme/app_spacing.dart';
 import 'package:mindclash/core/theme/app_typography.dart';
 import 'package:mindclash/features/game/domain/entities/game_data.dart';
-import 'package:mindclash/features/game/domain/entities/player.dart';
+import 'package:mindclash/features/game/domain/entities/team.dart';
 import 'package:mindclash/features/game/presentation/widgets/scoreboard_widget.dart';
 
 /// Shown at the end of each round with standings and next-round option.
@@ -11,7 +11,7 @@ class RoundEndWidget extends StatelessWidget {
   /// Creates a [RoundEndWidget].
   const RoundEndWidget({
     required this.data,
-    required this.sortedPlayers,
+    required this.sortedTeams,
     required this.onNextRound,
     required this.onEndGame,
     super.key,
@@ -20,8 +20,8 @@ class RoundEndWidget extends StatelessWidget {
   /// Current game data snapshot.
   final GameData data;
 
-  /// Players sorted by score (descending).
-  final List<Player> sortedPlayers;
+  /// Teams sorted by score (descending).
+  final List<Team> sortedTeams;
 
   /// Called when "Next Round" is tapped. Null if this is the last round.
   final VoidCallback? onNextRound;
@@ -49,7 +49,7 @@ class RoundEndWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: AppSpacing.lg),
-              ScoreboardWidget(players: sortedPlayers),
+              ScoreboardWidget(teams: sortedTeams),
               const SizedBox(height: AppSpacing.xl),
               SizedBox(
                 width: double.infinity,

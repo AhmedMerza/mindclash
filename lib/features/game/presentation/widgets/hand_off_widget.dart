@@ -6,7 +6,7 @@ import 'package:mindclash/features/game/domain/entities/game_data.dart';
 
 /// Pass-the-device screen shown between turns.
 ///
-/// Displays the next player's name and a "Show Question" button.
+/// Displays the next team's name and a "Show Question" button.
 /// Prevents accidental question reveals in pass-and-play mode.
 class HandOffWidget extends StatelessWidget {
   /// Creates a [HandOffWidget].
@@ -24,10 +24,10 @@ class HandOffWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (data.currentPlayerIndex >= data.players.length) {
-      return const Center(child: Text('Invalid player index'));
+    if (data.currentTeamIndex >= data.teams.length) {
+      return const Center(child: Text('Invalid team index'));
     }
-    final player = data.players[data.currentPlayerIndex];
+    final player = data.teams[data.currentTeamIndex];
     final questionNumber = data.currentQuestionIndex + 1;
     final totalQuestions = data.config.questionsPerRound;
 

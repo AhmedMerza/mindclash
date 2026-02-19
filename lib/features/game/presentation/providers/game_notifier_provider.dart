@@ -2,8 +2,8 @@ import 'package:mindclash/features/game/domain/entities/game_action.dart';
 import 'package:mindclash/features/game/domain/entities/game_config.dart';
 import 'package:mindclash/features/game/domain/entities/game_data.dart';
 import 'package:mindclash/features/game/domain/entities/game_state.dart';
-import 'package:mindclash/features/game/domain/entities/player.dart';
 import 'package:mindclash/features/game/domain/entities/question.dart';
+import 'package:mindclash/features/game/domain/entities/team.dart';
 import 'package:mindclash/features/game/domain/usecases/game_engine.dart';
 import 'package:mindclash/features/game/presentation/providers/game_ui_state.dart';
 import 'package:mindclash/features/game/presentation/providers/play_phase.dart';
@@ -30,7 +30,7 @@ class GameNotifier extends _$GameNotifier {
 
   /// Loads questions and starts a new game.
   Future<void> startGame({
-    required List<String> playerNames,
+    required List<String> teamNames,
     required String locale,
     required int numberOfRounds,
   }) async {
@@ -41,16 +41,16 @@ class GameNotifier extends _$GameNotifier {
         locale: locale,
       );
 
-      final players = [
-        for (int i = 0; i < playerNames.length; i++)
-          Player(id: 'p${i + 1}', name: playerNames[i]),
+      final teams = [
+        for (int i = 0; i < teamNames.length; i++)
+          Team(id: 'p${i + 1}', name: teamNames[i]),
       ];
 
       // Adjust questions per round to ensure fair distribution
-      // Each player must get the same number of questions per round
+      // Each team must get the same number of questions per round
       const baseQuestionsPerRound = 5;
       final questionsPerRound =
-          (baseQuestionsPerRound ~/ players.length) * players.length;
+          (baseQuestionsPerRound ~/ teams.length) * teams.length;
 
       // Calculate total questions needed and trim the list
       final totalQuestionsNeeded = numberOfRounds * questionsPerRound;
@@ -65,7 +65,7 @@ class GameNotifier extends _$GameNotifier {
       final newState = _engine.process(
         const GameState.initial(),
         GameAction.startGame(
-          players: players,
+          teams: teams,
           config: config,
           questions: questions,
         ),
@@ -189,20 +189,20 @@ class GameNotifier extends _$GameNotifier {
     return data.questions[globalIndex];
   }
 
-  /// The current player, or `null` if not in a playing state.
-  Player? get currentPlayer {
+  /// The current team, or `null` if not in a playing state.
+  Team? get currentTeam {
     final data = _dataOrNull();
     if (data == null) return null;
-    return data.players[data.currentPlayerIndex];
+    return data.teams[data.currentTeamIndex];
   }
 
-  /// All players sorted by score (descending).
+  /// All teams sorted by score (descending).
   /// Note: Creates a new sorted copy on each call. Acceptable for Phase 1
   /// since this is only called when displaying scoreboard (not in hot path).
-  List<Player> get sortedPlayersByScore {
+  List<Team> get sortedTeamsByScore {
     final data = _dataOrNull();
     if (data == null) return [];
-    return [...data.players]..sort((a, b) => b.score.compareTo(a.score));
+    return [...data.teams]..sort((a, b) => b.score.compareTo(a.score));
   }
 
   GameData? _dataOrNull() {

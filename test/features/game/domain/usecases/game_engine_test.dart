@@ -3,8 +3,8 @@ import 'package:mindclash/features/game/domain/entities/game_action.dart';
 import 'package:mindclash/features/game/domain/entities/game_config.dart';
 import 'package:mindclash/features/game/domain/entities/game_data.dart';
 import 'package:mindclash/features/game/domain/entities/game_state.dart';
-import 'package:mindclash/features/game/domain/entities/player.dart';
 import 'package:mindclash/features/game/domain/entities/question.dart';
+import 'package:mindclash/features/game/domain/entities/team.dart';
 import 'package:mindclash/features/game/domain/usecases/game_engine.dart';
 
 void main() {
@@ -12,9 +12,9 @@ void main() {
 
   // -- Shared fixtures -------------------------------------------------------
 
-  const alice = Player(id: 'p1', name: 'Alice');
-  const bob = Player(id: 'p2', name: 'Bob');
-  const players = [alice, bob];
+  const alice = Team(id: 'p1', name: 'Alice');
+  const bob = Team(id: 'p2', name: 'Bob');
+  const teams = [alice, bob];
 
   const easyQuestion = Question(
     id: 'q1',
@@ -64,13 +64,13 @@ void main() {
   // -- Helpers ---------------------------------------------------------------
 
   GameState startGame({
-    List<Player> p = players,
+    List<Team> p = teams,
     GameConfig c = testConfig,
     List<Question> q = testQuestions,
   }) {
     return engine.process(
       const GameState.initial(),
-      GameAction.startGame(players: p, config: c, questions: q),
+      GameAction.startGame(teams: p, config: c, questions: q),
     );
   }
 
@@ -100,21 +100,21 @@ void main() {
       final data = playingData(state);
 
       expect(state, isA<GamePlaying>());
-      expect(data.players, equals(players));
+      expect(data.teams, equals(teams));
       expect(data.questions, equals(testQuestions));
       expect(data.config, equals(testConfig));
-      expect(data.currentPlayerIndex, 0);
+      expect(data.currentTeamIndex, 0);
       expect(data.currentQuestionIndex, 0);
       expect(data.currentRound, 1);
     });
 
-    test('preserves player order', () {
+    test('preserves team order', () {
       const reversed = [bob, alice];
       final state = startGame(p: reversed);
       final data = playingData(state);
 
-      expect(data.players[0], bob);
-      expect(data.players[1], alice);
+      expect(data.teams[0], bob);
+      expect(data.teams[1], alice);
     });
   });
 
@@ -131,7 +131,7 @@ void main() {
       );
 
       final data = playingData(next);
-      expect(data.players[0].score, 200);
+      expect(data.teams[0].score, 200);
     });
 
     test('correct medium answer awards 400 points', () {
@@ -147,7 +147,7 @@ void main() {
       );
 
       final data = roundEndData(afterQ1);
-      expect(data.players[1].score, 400); // Bob got 400
+      expect(data.teams[1].score, 400); // Bob got 400
     });
 
     test('correct hard answer awards 600 points', () {
@@ -156,7 +156,7 @@ void main() {
       final state = engine.process(
         const GameState.initial(),
         const GameAction.startGame(
-          players: players,
+          teams: teams,
           config: config,
           questions: [hardQuestion],
         ),
@@ -168,7 +168,7 @@ void main() {
       );
 
       final data = roundEndData(next);
-      expect(data.players[0].score, 600);
+      expect(data.teams[0].score, 600);
     });
 
     test('custom score question awards its score value', () {
@@ -184,7 +184,7 @@ void main() {
       final state = engine.process(
         const GameState.initial(),
         const GameAction.startGame(
-          players: players,
+          teams: teams,
           config: config,
           questions: [expertQuestion],
         ),
@@ -196,7 +196,7 @@ void main() {
       );
 
       final data = roundEndData(next);
-      expect(data.players[0].score, 1000);
+      expect(data.teams[0].score, 1000);
     });
 
     test('wrong answer awards 0 points', () {
@@ -207,7 +207,7 @@ void main() {
       );
 
       final data = playingData(next);
-      expect(data.players[0].score, 0);
+      expect(data.teams[0].score, 0);
     });
 
     test('out-of-range selectedIndex awards 0 points', () {
@@ -218,7 +218,7 @@ void main() {
       );
 
       final data = playingData(next);
-      expect(data.players[0].score, 0);
+      expect(data.teams[0].score, 0);
     });
   });
 
@@ -227,7 +227,7 @@ void main() {
   // ==========================================================================
 
   group('AnswerQuestion — turn rotation', () {
-    test('advances to next player', () {
+    test('advances to next team', () {
       final playing = startGame();
       final next = engine.process(
         playing,
@@ -235,10 +235,10 @@ void main() {
       );
 
       final data = playingData(next);
-      expect(data.currentPlayerIndex, 1); // Alice->Bob
+      expect(data.currentTeamIndex, 1); // Alice->Bob
     });
 
-    test('player index wraps around to 0', () {
+    test('team index wraps around to 0', () {
       // After Alice answers (index becomes 1=Bob), Bob answers (wraps to 0)
       final afterAlice = engine.process(
         startGame(),
@@ -251,7 +251,7 @@ void main() {
 
       // Round ends after 2 questions, but player index should wrap
       final data = roundEndData(afterBob);
-      expect(data.currentPlayerIndex, 0); // wrapped back
+      expect(data.currentTeamIndex, 0); // wrapped back
     });
 
     test('advances question index by 1', () {
@@ -265,7 +265,7 @@ void main() {
       expect(data.currentQuestionIndex, 1);
     });
 
-    test('only current player score changes', () {
+    test('only current team score changes', () {
       final playing = startGame();
       final next = engine.process(
         playing,
@@ -273,8 +273,8 @@ void main() {
       );
 
       final data = playingData(next);
-      expect(data.players[0].score, 200); // Alice scored
-      expect(data.players[1].score, 0); // Bob unchanged
+      expect(data.teams[0].score, 200); // Alice scored
+      expect(data.teams[1].score, 0); // Bob unchanged
     });
   });
 
@@ -283,7 +283,7 @@ void main() {
   // ==========================================================================
 
   group('SkipQuestion', () {
-    test('scores 0 points for all players', () {
+    test('scores 0 points for all teams', () {
       final playing = startGame();
       final next = engine.process(
         playing,
@@ -291,11 +291,11 @@ void main() {
       );
 
       final data = playingData(next);
-      expect(data.players[0].score, 0);
-      expect(data.players[1].score, 0);
+      expect(data.teams[0].score, 0);
+      expect(data.teams[1].score, 0);
     });
 
-    test('advances player and question indices like answer', () {
+    test('advances team and question indices like answer', () {
       final playing = startGame();
       final next = engine.process(
         playing,
@@ -303,7 +303,7 @@ void main() {
       );
 
       final data = playingData(next);
-      expect(data.currentPlayerIndex, 1);
+      expect(data.currentTeamIndex, 1);
       expect(data.currentQuestionIndex, 1);
     });
   });
@@ -360,7 +360,7 @@ void main() {
       final data = playingData(nextRound);
       expect(data.currentRound, 2);
       expect(data.currentQuestionIndex, 0);
-      expect(data.currentPlayerIndex, 0);
+      expect(data.currentTeamIndex, 0);
     });
 
     test('nextRound on last round transitions to finished', () {
@@ -396,7 +396,7 @@ void main() {
       expect(finished, isA<GameFinished>());
     });
 
-    test('round end preserves player scores', () {
+    test('round end preserves team scores', () {
       // Alice answers correctly, then round ends
       final afterQ0 = engine.process(
         startGame(),
@@ -408,8 +408,8 @@ void main() {
       );
 
       final data = roundEndData(roundEnd);
-      expect(data.players[0].score, 200);
-      expect(data.players[1].score, 400);
+      expect(data.teams[0].score, 200);
+      expect(data.teams[1].score, 400);
     });
   });
 
@@ -552,8 +552,8 @@ void main() {
       );
 
       final data = finishedData(finished);
-      expect(data.players[0].score, 200);
-      expect(data.players[1].score, 0);
+      expect(data.teams[0].score, 200);
+      expect(data.teams[1].score, 0);
     });
   });
 
@@ -617,7 +617,7 @@ void main() {
           () => engine.process(
             startGame(),
             const GameAction.startGame(
-              players: players,
+              teams: teams,
               config: testConfig,
               questions: testQuestions,
             ),
@@ -653,7 +653,7 @@ void main() {
           () => engine.process(
             paused,
             const GameAction.startGame(
-              players: players,
+              teams: teams,
               config: testConfig,
               questions: testQuestions,
             ),
@@ -713,7 +713,7 @@ void main() {
           () => engine.process(
             roundEnd,
             const GameAction.startGame(
-              players: players,
+              teams: teams,
               config: testConfig,
               questions: testQuestions,
             ),
@@ -766,7 +766,7 @@ void main() {
           () => engine.process(
             finished,
             const GameAction.startGame(
-              players: players,
+              teams: teams,
               config: testConfig,
               questions: testQuestions,
             ),
@@ -827,12 +827,12 @@ void main() {
   // ==========================================================================
 
   group('Edge cases', () {
-    test('single player rotates back to self', () {
+    test('single team rotates back to self', () {
       const soloConfig = GameConfig(numberOfRounds: 1, questionsPerRound: 2);
       final state = engine.process(
         const GameState.initial(),
         const GameAction.startGame(
-          players: [alice],
+          teams: [alice],
           config: soloConfig,
           questions: testQuestions,
         ),
@@ -844,7 +844,7 @@ void main() {
       );
 
       final data = playingData(afterQ0);
-      expect(data.currentPlayerIndex, 0); // wraps to self
+      expect(data.currentTeamIndex, 0); // wraps to self
     });
 
     test('single question per round triggers immediate round end', () {
@@ -852,7 +852,7 @@ void main() {
       final state = engine.process(
         const GameState.initial(),
         const GameAction.startGame(
-          players: players,
+          teams: teams,
           config: config,
           questions: [easyQuestion, mediumQuestion],
         ),
@@ -871,7 +871,7 @@ void main() {
       final state = engine.process(
         const GameState.initial(),
         const GameAction.startGame(
-          players: players,
+          teams: teams,
           config: config,
           questions: [easyQuestion],
         ),
@@ -911,10 +911,10 @@ void main() {
       );
 
       final data = playingData(afterR2Q0);
-      expect(data.players[0].score, 800); // 200 + 600
+      expect(data.teams[0].score, 800); // 200 + 600
     });
 
-    test('multiple players accumulate scores independently', () {
+    test('multiple teams accumulate scores independently', () {
       // Alice answers q0 correctly, Bob answers q1 correctly
       final afterQ0 = engine.process(
         startGame(),
@@ -926,8 +926,8 @@ void main() {
       );
 
       final data = roundEndData(afterQ1);
-      expect(data.players[0].score, 200); // Alice
-      expect(data.players[1].score, 400); // Bob
+      expect(data.teams[0].score, 200); // Alice
+      expect(data.teams[1].score, 400); // Bob
     });
 
     test('global question indexing uses correct questions per round', () {
@@ -952,7 +952,7 @@ void main() {
       );
 
       final data = playingData(afterR2Q0);
-      expect(data.players[0].score, 600); // hard question = 600
+      expect(data.teams[0].score, 600); // hard question = 600
     });
   });
 }

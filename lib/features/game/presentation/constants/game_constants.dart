@@ -1,10 +1,10 @@
 /// Game-specific constants for UI configuration.
 sealed class GameConstants {
-  /// Maximum number of players allowed in a game (Phase 1).
-  static const int maxPlayers = 4;
+  /// Maximum number of teams allowed in a game (Phase 1).
+  static const int maxTeams = 4;
 
-  /// Minimum number of players required to start a game.
-  static const int minPlayers = 2;
+  /// Minimum number of teams required to start a game.
+  static const int minTeams = 2;
 
   /// Maximum number of rounds (limited by 15 questions / 5 per round).
   static const int maxRounds = 3;

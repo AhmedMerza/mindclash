@@ -2,12 +2,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mindclash/features/game/domain/entities/game_config.dart';
 import 'package:mindclash/features/game/domain/entities/game_data.dart';
 import 'package:mindclash/features/game/domain/entities/game_state.dart';
-import 'package:mindclash/features/game/domain/entities/player.dart';
 import 'package:mindclash/features/game/domain/entities/question.dart';
+import 'package:mindclash/features/game/domain/entities/team.dart';
 
 void main() {
   const data = GameData(
-    players: [Player(id: 'p1', name: 'Alice')],
+    teams: [Team(id: 'p1', name: 'Alice')],
     questions: [
       Question(
         id: 'q1',
@@ -33,7 +33,7 @@ void main() {
       const state = GamePlaying(data: data);
 
       expect(state, isA<GameState>());
-      expect(state.data.players, hasLength(1));
+      expect(state.data.teams, hasLength(1));
     });
 
     test('paused variant carries data', () {

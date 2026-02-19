@@ -8,7 +8,7 @@ import 'package:mindclash/features/game/domain/entities/question.dart';
 
 /// Displays the current question with answer options.
 ///
-/// Shows a status bar (player name, score, round info), the question text,
+/// Shows a status bar (team name, score, round info), the question text,
 /// four answer buttons, and a skip button.
 class QuestionWidget extends StatelessWidget {
   /// Creates a [QuestionWidget].
@@ -34,7 +34,7 @@ class QuestionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final player = data.players[data.currentPlayerIndex];
+    final player = data.teams[data.currentTeamIndex];
 
     return Padding(
       padding: const EdgeInsets.all(AppSpacing.lg),

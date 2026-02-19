@@ -57,12 +57,12 @@ class GameScreen extends ConsumerWidget {
               ),
             GameRoundEnd(:final data) => RoundEndWidget(
                 data: data,
-                sortedPlayers: notifier.sortedPlayersByScore,
+                sortedTeams: notifier.sortedTeamsByScore,
                 onNextRound: notifier.nextRound,
                 onEndGame: notifier.endGame,
               ),
             GameFinished() => ResultsWidget(
-                sortedPlayers: notifier.sortedPlayersByScore,
+                sortedTeams: notifier.sortedTeamsByScore,
                 onPlayAgain: () {
                   unawaited(
                     Navigator.of(context).pushReplacement(

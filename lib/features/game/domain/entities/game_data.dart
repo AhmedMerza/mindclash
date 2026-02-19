@@ -1,8 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:mindclash/features/game/domain/entities/game_config.dart';
-import 'package:mindclash/features/game/domain/entities/player.dart';
 import 'package:mindclash/features/game/domain/entities/question.dart';
+import 'package:mindclash/features/game/domain/entities/team.dart';
 
 part 'game_data.freezed.dart';
 
@@ -16,10 +15,10 @@ part 'game_data.freezed.dart';
 abstract class GameData with _$GameData {
   /// Creates a [GameData] snapshot with all active game state fields.
   const factory GameData({
-    required List<Player> players,
+    required List<Team> teams,
     required List<Question> questions,
     required GameConfig config,
-    @Default(0) int currentPlayerIndex,
+    @Default(0) int currentTeamIndex,
     @Default(0) int currentQuestionIndex,
     @Default(1) int currentRound,
   }) = _GameData;

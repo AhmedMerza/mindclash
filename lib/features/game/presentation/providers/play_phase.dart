@@ -6,7 +6,7 @@ part 'play_phase.freezed.dart';
 ///
 /// The domain GameEngine only knows "playing". The UI needs three
 /// distinct views during a turn:
-/// 1. **handOff** — pass the device to the next player
+/// 1. **handOff** — pass the device to the next team
 /// 2. **answering** — question visible, waiting for input
 /// 3. **result** — correct/wrong feedback after answering
 ///

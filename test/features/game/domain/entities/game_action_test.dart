@@ -1,14 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mindclash/features/game/domain/entities/game_action.dart';
 import 'package:mindclash/features/game/domain/entities/game_config.dart';
-import 'package:mindclash/features/game/domain/entities/player.dart';
 import 'package:mindclash/features/game/domain/entities/question.dart';
+import 'package:mindclash/features/game/domain/entities/team.dart';
 
 void main() {
   group('GameAction', () {
-    test('startGame carries players, config, and questions', () {
+    test('startGame carries teams, config, and questions', () {
       const action = StartGame(
-        players: [Player(id: 'p1', name: 'Alice')],
+        teams: [Team(id: 'p1', name: 'Alice')],
         config: GameConfig(),
         questions: [
           Question(
@@ -23,7 +23,7 @@ void main() {
       );
 
       expect(action, isA<GameAction>());
-      expect(action.players, hasLength(1));
+      expect(action.teams, hasLength(1));
       expect(action.config.numberOfRounds, 3);
       expect(action.questions, hasLength(1));
     });

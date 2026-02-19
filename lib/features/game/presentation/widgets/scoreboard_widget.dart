@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:mindclash/core/theme/app_colors.dart';
 import 'package:mindclash/core/theme/app_spacing.dart';
 import 'package:mindclash/core/theme/app_typography.dart';
-import 'package:mindclash/features/game/domain/entities/player.dart';
+import 'package:mindclash/features/game/domain/entities/team.dart';
 
-/// Reusable ranked player list showing names and scores.
+/// Reusable ranked team list showing names and scores.
 class ScoreboardWidget extends StatelessWidget {
-  /// Creates a [ScoreboardWidget] displaying [players] ranked by score.
+  /// Creates a [ScoreboardWidget] displaying [teams] ranked by score.
   const ScoreboardWidget({
-    required this.players,
+    required this.teams,
     super.key,
   });
 
-  /// Players sorted by score — caller is responsible for sorting.
-  final List<Player> players;
+  /// Teams sorted by score — caller is responsible for sorting.
+  final List<Team> teams;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (int i = 0; i < players.length; i++)
+        for (int i = 0; i < teams.length; i++)
           _ScoreboardRow(
             rank: i + 1,
-            player: players[i],
+            player: teams[i],
           ),
       ],
     );
@@ -36,7 +36,7 @@ class _ScoreboardRow extends StatelessWidget {
   });
 
   final int rank;
-  final Player player;
+  final Team player;
 
   @override
   Widget build(BuildContext context) {

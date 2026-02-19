@@ -11,7 +11,7 @@ import 'package:mindclash/features/game/presentation/providers/game_notifier_pro
 import 'package:mindclash/features/game/presentation/providers/setup_notifier_provider.dart';
 import 'package:mindclash/features/game/presentation/screens/game_screen.dart';
 
-/// Setup screen for configuring player names, locale, and round count.
+/// Setup screen for configuring team names, locale, and round count.
 class SetupScreen extends ConsumerStatefulWidget {
   /// Creates a [SetupScreen].
   const SetupScreen({super.key});
@@ -57,13 +57,13 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
 
     try {
       final gameNotifier = ref.read(gameProvider.notifier);
-      final trimmedNames = setupState.playerNames
+      final trimmedNames = setupState.teamNames
           .map((n) => n.trim())
           .where((n) => n.isNotEmpty)
           .toList();
 
       await gameNotifier.startGame(
-        playerNames: trimmedNames,
+        teamNames: trimmedNames,
         locale: setupState.locale,
         numberOfRounds: setupState.numberOfRounds,
       );
@@ -91,7 +91,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
     final setupState = ref.watch(setupProvider);
     final notifier = ref.read(setupProvider.notifier);
 
-    _syncControllers(setupState.playerNames.length);
+    _syncControllers(setupState.teamNames.length);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Game Setup')),
@@ -104,12 +104,12 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Text('Players', style: AppTypography.subheading),
+                const Text('Teams', style: AppTypography.subheading),
                 const SizedBox(height: AppSpacing.md),
 
-            ...List.generate(setupState.playerNames.length, (index) {
+            ...List.generate(setupState.teamNames.length, (index) {
               return Padding(
-                key: ValueKey('player_input_$index'),
+                key: ValueKey('team_input_$index'),
                 padding: const EdgeInsets.only(bottom: AppSpacing.sm),
                 child: Row(
                   children: [
@@ -117,7 +117,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
                       child: TextField(
                         controller: _controllers[index],
                         decoration: InputDecoration(
-                          hintText: 'Player ${index + 1}',
+                          hintText: 'Team ${index + 1}',
                           hintStyle: AppTypography.body.copyWith(
                             color: AppColors.textDisabled,
                           ),
@@ -134,12 +134,12 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
                         ),
                         style: AppTypography.body,
                         onChanged: (value) =>
-                            notifier.updatePlayerName(index, value),
+                            notifier.updateTeamName(index, value),
                       ),
                     ),
-                    if (setupState.playerNames.length > 2)
+                    if (setupState.teamNames.length > 2)
                       IconButton(
-                        onPressed: () => notifier.removePlayer(index),
+                        onPressed: () => notifier.removeTeam(index),
                         icon: const Icon(
                           Icons.remove_circle_outline,
                           color: AppColors.error,
@@ -150,12 +150,12 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
               );
             }),
 
-            if (setupState.playerNames.length < GameConstants.maxPlayers)
+            if (setupState.teamNames.length < GameConstants.maxTeams)
               TextButton.icon(
-                onPressed: notifier.addPlayer,
+                onPressed: notifier.addTeam,
                 icon: const Icon(Icons.add, color: AppColors.primaryLight),
                 label: Text(
-                  'Add Player',
+                  'Add Team',
                   style: AppTypography.body.copyWith(
                     color: AppColors.primaryLight,
                   ),

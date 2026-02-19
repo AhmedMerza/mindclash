@@ -1,14 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mindclash/features/game/domain/entities/game_config.dart';
 import 'package:mindclash/features/game/domain/entities/game_data.dart';
-import 'package:mindclash/features/game/domain/entities/player.dart';
 import 'package:mindclash/features/game/domain/entities/question.dart';
+import 'package:mindclash/features/game/domain/entities/team.dart';
 
 void main() {
   group('GameData', () {
-    const players = [
-      Player(id: 'p1', name: 'Alice'),
-      Player(id: 'p2', name: 'Bob'),
+    const teams = [
+      Team(id: 'p1', name: 'Alice'),
+      Team(id: 'p2', name: 'Bob'),
     ];
 
     const questions = [
@@ -26,19 +26,19 @@ void main() {
 
     test('index defaults are 0 and round defaults to 1', () {
       const data = GameData(
-        players: players,
+        teams: teams,
         questions: questions,
         config: config,
       );
 
-      expect(data.currentPlayerIndex, 0);
+      expect(data.currentTeamIndex, 0);
       expect(data.currentQuestionIndex, 0);
       expect(data.currentRound, 1);
     });
 
     test('copyWith advances question index', () {
       const data = GameData(
-        players: players,
+        teams: teams,
         questions: questions,
         config: config,
       );
@@ -46,7 +46,7 @@ void main() {
       final next = data.copyWith(currentQuestionIndex: 1);
 
       expect(next.currentQuestionIndex, 1);
-      expect(next.currentPlayerIndex, 0);
+      expect(next.currentTeamIndex, 0);
     });
   });
 }

@@ -4,13 +4,13 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'setup_notifier_provider.freezed.dart';
 part 'setup_notifier_provider.g.dart';
 
-/// State for the game setup screen (player names, locale, rounds).
+/// State for the game setup screen (team names, locale, rounds).
 @freezed
 abstract class SetupState with _$SetupState {
-  /// Creates a [SetupState] with defaults for a 2-player, 3-round game.
+  /// Creates a [SetupState] with defaults for a 2-team, 3-round game.
   const factory SetupState({
-    /// Player name inputs — starts with 2 empty slots.
-    @Default(['', '']) List<String> playerNames,
+    /// Team name inputs — starts with 2 empty slots.
+    @Default(['', '']) List<String> teamNames,
 
     /// Selected locale code (defaults to Arabic).
     @Default('ar') String locale,
@@ -32,24 +32,24 @@ class SetupNotifier extends _$SetupNotifier {
   @override
   SetupState build() => const SetupState();
 
-  /// Updates a player name at [index].
-  void updatePlayerName(int index, String name) {
-    final names = [...state.playerNames];
+  /// Updates a team name at [index].
+  void updateTeamName(int index, String name) {
+    final names = [...state.teamNames];
     names[index] = name;
-    state = state.copyWith(playerNames: names);
+    state = state.copyWith(teamNames: names);
   }
 
-  /// Adds an empty player slot (max 4).
-  void addPlayer() {
-    if (state.playerNames.length >= 4) return;
-    state = state.copyWith(playerNames: [...state.playerNames, '']);
+  /// Adds an empty team slot (max 4).
+  void addTeam() {
+    if (state.teamNames.length >= 4) return;
+    state = state.copyWith(teamNames: [...state.teamNames, '']);
   }
 
-  /// Removes the player at [index] (min 2).
-  void removePlayer(int index) {
-    if (state.playerNames.length <= 2) return;
-    final names = [...state.playerNames]..removeAt(index);
-    state = state.copyWith(playerNames: names);
+  /// Removes the team at [index] (min 2).
+  void removeTeam(int index) {
+    if (state.teamNames.length <= 2) return;
+    final names = [...state.teamNames]..removeAt(index);
+    state = state.copyWith(teamNames: names);
   }
 
   /// Sets the question locale (must be 'en' or 'ar').
@@ -77,7 +77,7 @@ class SetupNotifier extends _$SetupNotifier {
   /// Whether the form is valid and ready to start.
   bool get isValid {
     final trimmedNames =
-        state.playerNames.map((n) => n.trim()).where((n) => n.isNotEmpty);
+        state.teamNames.map((n) => n.trim()).where((n) => n.isNotEmpty);
     return trimmedNames.length >= 2 &&
         trimmedNames.length == trimmedNames.toSet().length;
   }

@@ -2,8 +2,8 @@ import 'package:mindclash/features/game/domain/entities/game_action.dart';
 import 'package:mindclash/features/game/domain/entities/game_config.dart';
 import 'package:mindclash/features/game/domain/entities/game_data.dart';
 import 'package:mindclash/features/game/domain/entities/game_state.dart';
-import 'package:mindclash/features/game/domain/entities/player.dart';
 import 'package:mindclash/features/game/domain/entities/question.dart';
+import 'package:mindclash/features/game/domain/entities/team.dart';
 
 /// Pure Dart state machine that drives all game logic.
 ///
@@ -35,8 +35,8 @@ class GameEngine {
 
   GameState _processInitial(GameAction action) {
     return switch (action) {
-      StartGame(:final players, :final config, :final questions) =>
-        _handleStartGame(players, config, questions),
+      StartGame(:final teams, :final config, :final questions) =>
+        _handleStartGame(teams, config, questions),
       _ => _invalidTransition(const GameState.initial(), action),
     };
   }
@@ -71,11 +71,11 @@ class GameEngine {
   // -- Action handlers -------------------------------------------------------
 
   GameState _handleStartGame(
-    List<Player> players,
+    List<Team> teams,
     GameConfig config,
     List<Question> questions,
   ) {
-    assert(players.isNotEmpty, 'StartGame requires at least one player');
+    assert(teams.isNotEmpty, 'StartGame requires at least one team');
     assert(
       questions.length >= config.numberOfRounds * config.questionsPerRound,
       'StartGame requires at least '
@@ -85,7 +85,7 @@ class GameEngine {
 
     return GameState.playing(
       data: GameData(
-        players: players,
+        teams: teams,
         questions: questions,
         config: config,
       ),
@@ -96,15 +96,15 @@ class GameEngine {
     final question = _currentQuestion(data);
     final isCorrect = selectedIndex == question.correctIndex;
 
-    final updatedPlayers = isCorrect
-        ? _updatePlayerScore(
-            data.players,
-            data.currentPlayerIndex,
+    final updatedTeams = isCorrect
+        ? _updateTeamScore(
+            data.teams,
+            data.currentTeamIndex,
             question.score,
           )
-        : data.players;
+        : data.teams;
 
-    return _advanceToNextQuestion(data.copyWith(players: updatedPlayers));
+    return _advanceToNextQuestion(data.copyWith(teams: updatedTeams));
   }
 
   GameState _handleSkipQuestion(GameData data) {
@@ -122,22 +122,22 @@ class GameEngine {
       data: data.copyWith(
         currentRound: nextRound,
         currentQuestionIndex: 0,
-        currentPlayerIndex: 0,
+        currentTeamIndex: 0,
       ),
     );
   }
 
   // -- Helpers ---------------------------------------------------------------
 
-  /// Advances player and question indices. Returns [GameRoundEnd] if the
+  /// Advances team and question indices. Returns [GameRoundEnd] if the
   /// round's question limit is reached, otherwise [GamePlaying].
   GameState _advanceToNextQuestion(GameData data) {
     final nextPlayerIndex =
-        (data.currentPlayerIndex + 1) % data.players.length;
+        (data.currentTeamIndex + 1) % data.teams.length;
     final nextQuestionIndex = data.currentQuestionIndex + 1;
 
     final updatedData = data.copyWith(
-      currentPlayerIndex: nextPlayerIndex,
+      currentTeamIndex: nextPlayerIndex,
       currentQuestionIndex: nextQuestionIndex,
     );
 
@@ -157,19 +157,19 @@ class GameEngine {
     return data.questions[globalIndex];
   }
 
-  /// Returns a new player list with the score at [playerIndex] increased
+  /// Returns a new player list with the score at [teamIndex] increased
   /// by [points].
-  List<Player> _updatePlayerScore(
-    List<Player> players,
-    int playerIndex,
+  List<Team> _updateTeamScore(
+    List<Team> teams,
+    int teamIndex,
     int points,
   ) {
     return [
-      for (int i = 0; i < players.length; i++)
-        if (i == playerIndex)
-          players[i].copyWith(score: players[i].score + points)
+      for (int i = 0; i < teams.length; i++)
+        if (i == teamIndex)
+          teams[i].copyWith(score: teams[i].score + points)
         else
-          players[i],
+          teams[i],
     ];
   }
 

@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:mindclash/core/theme/app_colors.dart';
 import 'package:mindclash/core/theme/app_spacing.dart';
 import 'package:mindclash/core/theme/app_typography.dart';
-import 'package:mindclash/features/game/domain/entities/player.dart';
+import 'package:mindclash/features/game/domain/entities/team.dart';
 import 'package:mindclash/features/game/presentation/widgets/scoreboard_widget.dart';
 
 /// Final results screen with winner announcement and scoreboard.
 class ResultsWidget extends StatelessWidget {
   /// Creates a [ResultsWidget].
   const ResultsWidget({
-    required this.sortedPlayers,
+    required this.sortedTeams,
     required this.onPlayAgain,
     required this.onHome,
     super.key,
   });
 
-  /// Players sorted by score (descending).
-  final List<Player> sortedPlayers;
+  /// Teams sorted by score (descending).
+  final List<Team> sortedTeams;
 
   /// Called when "Play Again" is tapped.
   final VoidCallback onPlayAgain;
@@ -26,10 +26,10 @@ class ResultsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (sortedPlayers.isEmpty) {
+    if (sortedTeams.isEmpty) {
       return const Center(child: Text('No players'));
     }
-    final winner = sortedPlayers.first;
+    final winner = sortedTeams.first;
 
     return Center(
       child: SingleChildScrollView(
@@ -65,7 +65,7 @@ class ResultsWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: AppSpacing.lg),
-              ScoreboardWidget(players: sortedPlayers),
+              ScoreboardWidget(teams: sortedTeams),
               const SizedBox(height: AppSpacing.xl),
               SizedBox(
                 width: double.infinity,
