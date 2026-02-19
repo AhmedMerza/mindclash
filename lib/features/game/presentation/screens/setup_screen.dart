@@ -77,7 +77,11 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
         ),
       );
     } on Exception catch (e) {
-      notifier.setError(e.toString());
+      notifier.setError('Failed to load questions. Please try again.');
+      // Log the actual error for debugging
+      debugPrint('Error loading questions: $e');
+    } finally {
+      notifier.setLoading(isLoading: false);
     }
   }
 
@@ -100,6 +104,7 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
 
             ...List.generate(setupState.playerNames.length, (index) {
               return Padding(
+                key: ValueKey('player_input_$index'),
                 padding: const EdgeInsets.only(bottom: AppSpacing.sm),
                 child: Row(
                   children: [

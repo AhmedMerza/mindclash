@@ -80,6 +80,7 @@ class QuestionWidget extends StatelessWidget {
                     const SizedBox(height: AppSpacing.xxl),
                     ...List.generate(question.options.length, (index) {
                       return Padding(
+                        key: ValueKey('option_$index'),
                         padding: const EdgeInsets.only(bottom: AppSpacing.md),
                         child: SizedBox(
                           width: double.infinity,

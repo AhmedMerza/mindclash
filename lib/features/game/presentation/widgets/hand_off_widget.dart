@@ -24,6 +24,9 @@ class HandOffWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (data.currentPlayerIndex >= data.players.length) {
+      return const Center(child: Text('Invalid player index'));
+    }
     final player = data.players[data.currentPlayerIndex];
     final questionNumber = data.currentQuestionIndex + 1;
     final totalQuestions = data.config.questionsPerRound;

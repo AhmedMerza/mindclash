@@ -20,6 +20,9 @@ part 'game_notifier_provider.g.dart';
 class GameNotifier extends _$GameNotifier {
   static const _engine = GameEngine();
 
+  // TODO(phase2): Make category configurable when more categories are added
+  static const _defaultCategory = 'science';
+
   @override
   GameUiState build() {
     return const GameUiState(engineState: GameState.initial());
@@ -34,7 +37,7 @@ class GameNotifier extends _$GameNotifier {
     try {
       final repo = ref.read(questionRepositoryProvider);
       final questions = await repo.getQuestions(
-        category: 'science',
+        category: _defaultCategory,
         locale: locale,
       );
 
@@ -181,6 +184,8 @@ class GameNotifier extends _$GameNotifier {
   }
 
   /// All players sorted by score (descending).
+  /// Note: Creates a new sorted copy on each call. Acceptable for Phase 1
+  /// since this is only called when displaying scoreboard (not in hot path).
   List<Player> get sortedPlayersByScore {
     final data = _dataOrNull();
     if (data == null) return [];
