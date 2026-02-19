@@ -1,0 +1,282 @@
+[
+  {
+    "id": "geo_001",
+    "text": "What is the capital of Egypt?",
+    "options": ["Alexandria", "Cairo", "Luxor", "Aswan"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "geo_002",
+    "text": "Which is the longest river in the world?",
+    "options": ["Amazon", "Nile", "Yangtze", "Mississippi"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "geo_003",
+    "text": "What is the largest desert in the world?",
+    "options": ["Gobi", "Arabian", "Sahara", "Kalahari"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "geo_004",
+    "text": "Which ocean is the largest?",
+    "options": ["Atlantic", "Indian", "Pacific", "Arctic"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "geo_005",
+    "text": "What is the capital of Saudi Arabia?",
+    "options": ["Jeddah", "Mecca", "Riyadh", "Medina"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "geo_006",
+    "text": "Which mountain is the highest in the world?",
+    "options": ["K2", "Mount Everest", "Kilimanjaro", "Denali"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "geo_007",
+    "text": "What is the smallest country in the world?",
+    "options": ["Monaco", "Vatican City", "San Marino", "Liechtenstein"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "geo_008",
+    "text": "Which continent is the Sahara Desert located on?",
+    "options": ["Asia", "Africa", "South America", "Australia"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "geo_009",
+    "text": "What is the capital of the United Arab Emirates?",
+    "options": ["Dubai", "Sharjah", "Abu Dhabi", "Ajman"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "geo_010",
+    "text": "Which country is famous for the pyramids?",
+    "options": ["Mexico", "Egypt", "Sudan", "Peru"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "geo_011",
+    "text": "What is the largest country in the world by area?",
+    "options": ["Canada", "China", "United States", "Russia"],
+    "correctIndex": 3,
+    "difficulty": "easy"
+  },
+  {
+    "id": "geo_012",
+    "text": "Which sea separates Africa and Europe?",
+    "options": ["Red Sea", "Black Sea", "Mediterranean Sea", "Caspian Sea"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "geo_013",
+    "text": "What is the capital of Jordan?",
+    "options": ["Amman", "Petra", "Aqaba", "Irbid"],
+    "correctIndex": 0,
+    "difficulty": "easy"
+  },
+  {
+    "id": "geo_014",
+    "text": "How many continents are there?",
+    "options": ["5", "6", "7", "8"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "geo_015",
+    "text": "What is the capital of Morocco?",
+    "options": ["Casablanca", "Marrakech", "Rabat", "Fez"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "geo_016",
+    "text": "Which river flows through Baghdad?",
+    "options": ["Nile", "Euphrates", "Tigris", "Jordan"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "geo_017",
+    "text": "What is the deepest ocean trench?",
+    "options": ["Puerto Rico Trench", "Java Trench", "Mariana Trench", "Tonga Trench"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "geo_018",
+    "text": "Which country has the most natural lakes?",
+    "options": ["United States", "Russia", "Canada", "Finland"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "geo_019",
+    "text": "What is the capital of Lebanon?",
+    "options": ["Tripoli", "Sidon", "Beirut", "Tyre"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "geo_020",
+    "text": "Which strait connects the Mediterranean Sea to the Atlantic Ocean?",
+    "options": ["Bosporus", "Gibraltar", "Hormuz", "Malacca"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "geo_021",
+    "text": "What is the largest island in the Mediterranean?",
+    "options": ["Crete", "Cyprus", "Sicily", "Sardinia"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "geo_022",
+    "text": "Which African country has the largest population?",
+    "options": ["Egypt", "Ethiopia", "Nigeria", "South Africa"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "geo_023",
+    "text": "What is the lowest point on Earth's surface?",
+    "options": ["Death Valley", "Dead Sea", "Mariana Trench", "Qattara Depression"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "geo_024",
+    "text": "Which Gulf is between Saudi Arabia and Iran?",
+    "options": ["Gulf of Oman", "Persian Gulf", "Gulf of Aden", "Red Sea"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "geo_025",
+    "text": "What is the capital of Tunisia?",
+    "options": ["Sfax", "Sousse", "Tunis", "Carthage"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "geo_026",
+    "text": "Which mountain range separates Europe from Asia?",
+    "options": ["Caucasus", "Ural Mountains", "Alps", "Himalayas"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "geo_027",
+    "text": "What is the largest lake in Africa?",
+    "options": ["Lake Tanganyika", "Lake Malawi", "Lake Victoria", "Lake Chad"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "geo_028",
+    "text": "Which country has the longest coastline?",
+    "options": ["Australia", "Indonesia", "Canada", "Russia"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "geo_029",
+    "text": "What is the capital of Oman?",
+    "options": ["Salalah", "Sohar", "Muscat", "Nizwa"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "geo_030",
+    "text": "Which waterway connects the Red Sea to the Mediterranean?",
+    "options": ["Panama Canal", "Suez Canal", "Kiel Canal", "Corinth Canal"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "geo_031",
+    "text": "What is the name of the imaginary line at 0° latitude?",
+    "options": ["Prime Meridian", "Tropic of Cancer", "Equator", "Arctic Circle"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "geo_032",
+    "text": "Which African country was never colonized?",
+    "options": ["Ethiopia", "Liberia", "Both Ethiopia and Liberia", "Somalia"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "geo_033",
+    "text": "What is the driest place on Earth?",
+    "options": ["Sahara Desert", "Atacama Desert", "Death Valley", "Arabian Desert"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "geo_034",
+    "text": "Which city is located on two continents?",
+    "options": ["Cairo", "Istanbul", "Moscow", "Suez"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "geo_035",
+    "text": "What percentage of Earth's surface is covered by water?",
+    "options": ["61%", "71%", "81%", "91%"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "geo_036",
+    "text": "Which country has the most UNESCO World Heritage Sites?",
+    "options": ["China", "Italy", "Spain", "France"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "geo_037",
+    "text": "What is the capital of Yemen?",
+    "options": ["Aden", "Sana'a", "Taiz", "Hodeidah"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "geo_038",
+    "text": "Which sea has no coastline?",
+    "options": ["Dead Sea", "Caspian Sea", "Sargasso Sea", "Aral Sea"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "geo_039",
+    "text": "What is the oldest capital city in the world?",
+    "options": ["Athens", "Rome", "Damascus", "Baghdad"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "geo_040",
+    "text": "Which two countries share the longest land border?",
+    "options": ["United States and Mexico", "Russia and Kazakhstan", "Canada and United States", "China and Russia"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  }
+]

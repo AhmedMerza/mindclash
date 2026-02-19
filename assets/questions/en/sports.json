@@ -1,0 +1,282 @@
+[
+  {
+    "id": "sport_001",
+    "text": "How many players are on a soccer team on the field?",
+    "options": ["9", "10", "11", "12"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sport_002",
+    "text": "What sport is known as 'the beautiful game'?",
+    "options": ["Basketball", "Football (Soccer)", "Tennis", "Cricket"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sport_003",
+    "text": "How many Grand Slam tournaments are there in tennis each year?",
+    "options": ["2", "3", "4", "5"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sport_004",
+    "text": "In which sport would you perform a slam dunk?",
+    "options": ["Volleyball", "Basketball", "Handball", "Tennis"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sport_005",
+    "text": "What is the maximum score in a single frame of bowling?",
+    "options": ["100", "200", "300", "500"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sport_006",
+    "text": "How many Olympic rings are there?",
+    "options": ["4", "5", "6", "7"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sport_007",
+    "text": "Which country hosted the 2022 FIFA World Cup?",
+    "options": ["UAE", "Qatar", "Saudi Arabia", "Bahrain"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sport_008",
+    "text": "What color is awarded to the Tour de France leader?",
+    "options": ["Green", "Yellow", "Red", "Blue"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sport_009",
+    "text": "In boxing, how many rounds are in a championship fight?",
+    "options": ["10", "12", "15", "20"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sport_010",
+    "text": "What is the national sport of Japan?",
+    "options": ["Judo", "Karate", "Sumo Wrestling", "Kendo"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sport_011",
+    "text": "How long is an Olympic swimming pool in meters?",
+    "options": ["25", "50", "75", "100"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sport_012",
+    "text": "Which Egyptian footballer is known as 'The Pharaoh'?",
+    "options": ["Mohamed Aboutrika", "Mohamed Salah", "Ahmed Hassan", "Hossam Hassan"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sport_013",
+    "text": "What sport uses a shuttlecock?",
+    "options": ["Tennis", "Squash", "Badminton", "Table Tennis"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sport_014",
+    "text": "How many points is a touchdown worth in American football?",
+    "options": ["3", "6", "7", "10"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sport_015",
+    "text": "What is the diameter of a basketball hoop in inches?",
+    "options": ["16", "18", "20", "22"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sport_016",
+    "text": "Who won the most FIFA World Cup titles?",
+    "options": ["Germany", "Argentina", "Brazil", "Italy"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sport_017",
+    "text": "In what year were the first modern Olympics held?",
+    "options": ["1892", "1896", "1900", "1904"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sport_018",
+    "text": "What is the only Grand Slam tennis tournament played on grass?",
+    "options": ["US Open", "French Open", "Australian Open", "Wimbledon"],
+    "correctIndex": 3,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sport_019",
+    "text": "How many players are on a rugby union team?",
+    "options": ["11", "13", "15", "17"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sport_020",
+    "text": "What is the maximum break in snooker?",
+    "options": ["127", "137", "147", "157"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sport_021",
+    "text": "Which country has won the most Olympic gold medals in history?",
+    "options": ["Russia", "China", "United States", "Germany"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sport_022",
+    "text": "Who is the all-time leading scorer in NBA history?",
+    "options": ["Kobe Bryant", "Michael Jordan", "LeBron James", "Kareem Abdul-Jabbar"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sport_023",
+    "text": "What is the national sport of Canada?",
+    "options": ["Ice Hockey", "Lacrosse", "Both Ice Hockey and Lacrosse", "Baseball"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sport_024",
+    "text": "How many times has Egypt won the Africa Cup of Nations?",
+    "options": ["5", "6", "7", "8"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sport_025",
+    "text": "What is the length of a marathon in kilometers?",
+    "options": ["40.195", "41.195", "42.195", "43.195"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sport_026",
+    "text": "Which Formula 1 driver has won the most world championships?",
+    "options": ["Ayrton Senna", "Michael Schumacher and Lewis Hamilton (tied)", "Sebastian Vettel", "Alain Prost"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sport_027",
+    "text": "In cricket, how many balls are in an over?",
+    "options": ["4", "5", "6", "8"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sport_028",
+    "text": "What is the record for most goals scored in a single World Cup tournament?",
+    "options": ["11", "12", "13", "14"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sport_029",
+    "text": "Which club has won the most UEFA Champions League titles?",
+    "options": ["Barcelona", "AC Milan", "Bayern Munich", "Real Madrid"],
+    "correctIndex": 3,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sport_030",
+    "text": "What is the highest governing body of world football?",
+    "options": ["UEFA", "FIFA", "AFC", "CONMEBOL"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sport_031",
+    "text": "Who holds the record for the fastest 100m sprint?",
+    "options": ["Carl Lewis", "Usain Bolt", "Tyson Gay", "Asafa Powell"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sport_032",
+    "text": "What is the name of the trophy awarded in the NHL playoffs?",
+    "options": ["Larry O'Brien Trophy", "Vince Lombardi Trophy", "Stanley Cup", "Commissioner's Trophy"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sport_033",
+    "text": "How many weight classes are there in Olympic boxing?",
+    "options": ["10", "13", "15", "17"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sport_034",
+    "text": "Who was the first footballer to win the Ballon d'Or three times?",
+    "options": ["Pelé", "Diego Maradona", "Michel Platini", "Johan Cruyff"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sport_035",
+    "text": "What is the maximum number of clubs allowed in a golf bag during a round?",
+    "options": ["12", "14", "16", "18"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sport_036",
+    "text": "In what year was the first FIFA World Cup held?",
+    "options": ["1926", "1930", "1934", "1938"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sport_037",
+    "text": "Which tennis player has won the most Grand Slam singles titles?",
+    "options": ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Pete Sampras"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sport_038",
+    "text": "What is the name of the award given to the best player at each FIFA World Cup?",
+    "options": ["Golden Boot", "Golden Ball", "Golden Glove", "FIFA Player Award"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sport_039",
+    "text": "How many consecutive Grand Slam titles did Martina Navratilova win?",
+    "options": ["4", "5", "6", "7"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sport_040",
+    "text": "What is the oldest professional sports trophy in North America?",
+    "options": ["World Series Trophy", "Stanley Cup", "Grey Cup", "NBA Championship Trophy"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  }
+]

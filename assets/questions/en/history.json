@@ -1,0 +1,387 @@
+[
+  {
+    "id": "hist_001",
+    "text": "In what year did World War II end?",
+    "options": ["1943", "1944", "1945", "1946"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_002",
+    "text": "Who was the first Imam and rightful successor after Prophet Muhammad (PBUH)?",
+    "options": ["Umar ibn al-Khattab", "Abu Bakr al-Siddiq", "Uthman ibn Affan", "Ali ibn Abi Talib"],
+    "correctIndex": 3,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_003",
+    "text": "Which ancient wonder was located in Alexandria, Egypt?",
+    "options": ["The Colossus", "The Hanging Gardens", "The Lighthouse", "The Temple of Artemis"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_004",
+    "text": "Who was the first emperor of Rome?",
+    "options": ["Julius Caesar", "Augustus", "Nero", "Caligula"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_005",
+    "text": "In which year did the Ottoman Empire fall?",
+    "options": ["1918", "1920", "1922", "1924"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_006",
+    "text": "What was the ancient name of Istanbul?",
+    "options": ["Athens", "Constantinople", "Antioch", "Alexandria"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_007",
+    "text": "Who built the Great Pyramid of Giza?",
+    "options": ["Ramses II", "Tutankhamun", "Khufu", "Cleopatra"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_008",
+    "text": "What year did Christopher Columbus reach the Americas?",
+    "options": ["1492", "1500", "1488", "1502"],
+    "correctIndex": 0,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_009",
+    "text": "Which empire built Machu Picchu?",
+    "options": ["Aztec", "Maya", "Inca", "Olmec"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_010",
+    "text": "Who was the legendary queen of ancient Egypt known for her beauty?",
+    "options": ["Nefertiti", "Cleopatra", "Hatshepsut", "Nefertari"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_011",
+    "text": "In what year did the French Revolution begin?",
+    "options": ["1776", "1789", "1793", "1799"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_012",
+    "text": "Who was the founder of the Mongol Empire?",
+    "options": ["Kublai Khan", "Genghis Khan", "Tamerlane", "Ogedei Khan"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_013",
+    "text": "What was the capital of the Abbasid Caliphate?",
+    "options": ["Damascus", "Baghdad", "Cairo", "Mecca"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_014",
+    "text": "Which pharaoh's tomb was discovered nearly intact in 1922?",
+    "options": ["Ramses II", "Khufu", "Tutankhamun", "Akhenaten"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_015",
+    "text": "What ancient writing system did the Egyptians use?",
+    "options": ["Cuneiform", "Hieroglyphics", "Sanskrit", "Latin"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_016",
+    "text": "Who was the famous Islamic scholar and physician who wrote 'The Canon of Medicine'?",
+    "options": ["Al-Razi", "Ibn Sina (Avicenna)", "Al-Khwarizmi", "Ibn Rushd"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_017",
+    "text": "Which battle ended Napoleon's rule as Emperor of France?",
+    "options": ["Waterloo", "Austerlitz", "Trafalgar", "Leipzig"],
+    "correctIndex": 0,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_018",
+    "text": "What was the name of the treaty that ended World War I?",
+    "options": ["Treaty of Paris", "Treaty of Versailles", "Treaty of Ghent", "Treaty of Vienna"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_019",
+    "text": "Who was the Umayyad caliph who expanded the empire to its greatest extent?",
+    "options": ["Muawiyah I", "Abd al-Malik", "Al-Walid I", "Umar II"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_020",
+    "text": "In which year did the Berlin Wall fall?",
+    "options": ["1987", "1988", "1989", "1990"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_021",
+    "text": "Who was the famous Carthaginian general who crossed the Alps with elephants?",
+    "options": ["Scipio", "Hannibal", "Hamilcar", "Hasdrubal"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_022",
+    "text": "What was the ancient library that was one of the largest in the world?",
+    "options": ["Library of Athens", "Library of Rome", "Library of Alexandria", "Library of Babylon"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_023",
+    "text": "Which sultan conquered Constantinople in 1453?",
+    "options": ["Suleiman the Magnificent", "Mehmed II", "Selim I", "Bayezid I"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_024",
+    "text": "What was the name of the trading route between China and Europe?",
+    "options": ["Spice Route", "Silk Road", "Tea Road", "Salt Route"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_025",
+    "text": "Who was the first person to circumnavigate the globe?",
+    "options": ["Christopher Columbus", "Vasco da Gama", "Ferdinand Magellan", "Marco Polo"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_026",
+    "text": "What ancient civilization invented the concept of zero?",
+    "options": ["Egyptian", "Greek", "Indian", "Chinese"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_027",
+    "text": "Who was the legendary Andalusian leader during the Reconquista?",
+    "options": ["Saladin", "Al-Mansur", "Tariq ibn Ziyad", "Abd al-Rahman III"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_028",
+    "text": "In which year did the United States declare independence?",
+    "options": ["1774", "1775", "1776", "1777"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_029",
+    "text": "Who was the Egyptian leader during the Suez Crisis of 1956?",
+    "options": ["Anwar Sadat", "Gamal Abdel Nasser", "Hosni Mubarak", "King Farouk"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_030",
+    "text": "What was the name of the defensive wall built by the Romans in Britain?",
+    "options": ["Antonine Wall", "Hadrian's Wall", "London Wall", "Saxon Wall"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_031",
+    "text": "What was the name of the secret police in the Soviet Union?",
+    "options": ["Gestapo", "KGB", "Stasi", "MI6"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "hist_032",
+    "text": "Who was the Fatimid caliph who founded Cairo?",
+    "options": ["Al-Mu'izz li-Din Allah", "Al-Hakim bi-Amr Allah", "Al-Mahdi", "Al-Aziz"],
+    "correctIndex": 0,
+    "difficulty": "hard"
+  },
+  {
+    "id": "hist_033",
+    "text": "What treaty divided the New World between Spain and Portugal?",
+    "options": ["Treaty of Madrid", "Treaty of Tordesillas", "Treaty of Utrecht", "Treaty of Lisbon"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "hist_034",
+    "text": "Who was the mathematician and astronomer who worked in the House of Wisdom in Baghdad?",
+    "options": ["Al-Battani", "Al-Khwarizmi", "Omar Khayyam", "Al-Biruni"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "hist_035",
+    "text": "What was the name of the pandemic that killed millions in 14th century Europe?",
+    "options": ["Spanish Flu", "Black Death", "Cholera", "Smallpox"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "hist_036",
+    "text": "Who was the Byzantine emperor during the construction of Hagia Sophia?",
+    "options": ["Constantine I", "Justinian I", "Heraclius", "Leo III"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "hist_037",
+    "text": "What was the name of the medieval Islamic dynasty that ruled North Africa and Spain?",
+    "options": ["Abbasid", "Umayyad", "Almoravid", "Ayyubid"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "hist_038",
+    "text": "Who was the last pharaoh of ancient Egypt?",
+    "options": ["Cleopatra VII", "Ptolemy XIII", "Nectanebo II", "Ramses XI"],
+    "correctIndex": 0,
+    "difficulty": "hard"
+  },
+  {
+    "id": "hist_039",
+    "text": "What year marked the beginning of the Islamic calendar?",
+    "options": ["610 CE", "622 CE", "630 CE", "632 CE"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "hist_040",
+    "text": "Who led the Reconquista that completed the Christian reconquest of Spain?",
+    "options": ["Charles V", "Philip II", "Ferdinand and Isabella", "Alfonso X"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "hist_041",
+    "text": "Who was the third Imam?",
+    "options": ["Imam Hassan", "Imam Hussain", "Imam Ali Zayn al-Abidin", "Imam Muhammad al-Baqir"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_042",
+    "text": "In which city is Imam Ali's shrine located?",
+    "options": ["Karbala", "Najaf", "Mashhad", "Qom"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_043",
+    "text": "What was the name of Imam Hussain's mother?",
+    "options": ["Khadija", "Aisha", "Fatimah al-Zahra", "Umm Kulthum"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "hist_044",
+    "text": "In which Islamic month did the Battle of Karbala take place?",
+    "options": ["Ramadan", "Muharram", "Safar", "Rajab"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_045",
+    "text": "In what year (Hijri) did the Battle of Karbala occur?",
+    "options": ["60 AH", "61 AH", "62 AH", "63 AH"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_046",
+    "text": "Who was the sixth Imam who established major Islamic jurisprudence?",
+    "options": ["Imam Ja'far al-Sadiq", "Imam Muhammad al-Baqir", "Imam Musa al-Kadhim", "Imam Ali al-Ridha"],
+    "correctIndex": 0,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_047",
+    "text": "What treaty did Imam Hassan sign to prevent Muslim bloodshed?",
+    "options": ["Treaty of Hudaybiyyah", "Peace Treaty with Muawiyah", "Treaty of Najaf", "Pact of Medina"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_048",
+    "text": "On which day of Muharram did Imam Hussain's martyrdom occur?",
+    "options": ["7th", "9th", "10th", "12th"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_049",
+    "text": "Who was the eighth Imam who is buried in Mashhad, Iran?",
+    "options": ["Imam Musa al-Kadhim", "Imam Ali al-Ridha", "Imam Muhammad al-Jawad", "Imam Ali al-Hadi"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "hist_050",
+    "text": "Which Imam is known by the title 'al-Baqir' (the one who splits open knowledge)?",
+    "options": ["The Fourth Imam", "The Fifth Imam (Muhammad al-Baqir)", "The Sixth Imam", "The Seventh Imam"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "hist_051",
+    "text": "What year did the Major Occultation of the Twelfth Imam begin?",
+    "options": ["329 AH", "260 AH", "874 CE", "941 CE"],
+    "correctIndex": 3,
+    "difficulty": "hard"
+  },
+  {
+    "id": "hist_052",
+    "text": "Who was the ninth Imam known as 'al-Jawad' or 'al-Taqi'?",
+    "options": ["Imam Ali al-Hadi", "Imam Muhammad al-Jawad", "Imam Hassan al-Askari", "Imam Musa al-Kadhim"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "hist_053",
+    "text": "Where did the Event of Ghadir Khumm take place?",
+    "options": ["Near Mecca", "Near Medina", "Between Mecca and Medina", "In Kufa"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "hist_054",
+    "text": "Who were the companions of Imam Hussain known for their final stand at Karbala?",
+    "options": ["Only Muslim ibn Aqil", "Only Abbas ibn Ali", "Only Habib ibn Muzahir", "Muslim ibn Aqil, Abbas ibn Ali, and Habib ibn Muzahir"],
+    "correctIndex": 3,
+    "difficulty": "medium"
+  },
+  {
+    "id": "hist_055",
+    "text": "What is the name of the fourth Imam?",
+    "options": ["Ali ibn Hussain (Zayn al-Abidin)", "Muhammad ibn Ali (al-Baqir)", "Ja'far ibn Muhammad (al-Sadiq)", "Hassan ibn Ali"],
+    "correctIndex": 0,
+    "difficulty": "medium"
+  }
+]

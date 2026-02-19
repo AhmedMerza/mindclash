@@ -118,5 +118,280 @@
     ],
     "correctIndex": 0,
     "difficulty": "hard"
+  },
+  {
+    "id": "sci_016",
+    "text": "What is the largest organ in the human body?",
+    "options": ["Liver", "Brain", "Skin", "Heart"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_017",
+    "text": "What is the speed of light in a vacuum?",
+    "options": ["300,000 km/s", "150,000 km/s", "450,000 km/s", "600,000 km/s"],
+    "correctIndex": 0,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_018",
+    "text": "What force keeps planets in orbit around the Sun?",
+    "options": ["Magnetic force", "Gravitational force", "Nuclear force", "Electric force"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_019",
+    "text": "What is the freezing point of water in Celsius?",
+    "options": ["0°C", "32°C", "100°C", "-10°C"],
+    "correctIndex": 0,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_020",
+    "text": "Which metal is liquid at room temperature?",
+    "options": ["Iron", "Gold", "Mercury", "Silver"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_021",
+    "text": "What is photosynthesis?",
+    "options": [
+      "Plants converting light into energy",
+      "Animals breathing oxygen",
+      "Water evaporating",
+      "Rocks forming crystals"
+    ],
+    "correctIndex": 0,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_022",
+    "text": "What is the main component of the Sun?",
+    "options": ["Helium", "Oxygen", "Hydrogen", "Carbon"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_023",
+    "text": "What do we call animals that eat only plants?",
+    "options": ["Carnivores", "Herbivores", "Omnivores", "Predators"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_024",
+    "text": "What is the smallest unit of life?",
+    "options": ["Atom", "Molecule", "Cell", "Organ"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_025",
+    "text": "What part of the plant conducts photosynthesis?",
+    "options": ["Roots", "Stem", "Leaves", "Flowers"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_026",
+    "text": "What is the pH level of pure water?",
+    "options": ["5", "7", "9", "11"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_027",
+    "text": "What type of blood cells fight infections?",
+    "options": ["Red blood cells", "White blood cells", "Platelets", "Plasma"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_028",
+    "text": "What is the process by which a caterpillar becomes a butterfly?",
+    "options": ["Evolution", "Metamorphosis", "Adaptation", "Mutation"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_029",
+    "text": "What is the approximate speed of sound in air at sea level?",
+    "options": ["343 m/s", "500 m/s", "200 m/s", "1000 m/s"],
+    "correctIndex": 0,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_030",
+    "text": "What is the name of the theory that describes Earth's moving plates?",
+    "options": ["Continental drift", "Plate tectonics", "Volcanic theory", "Seismic shift"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_031",
+    "text": "What is the largest moon in our solar system?",
+    "options": ["Titan", "Europa", "Ganymede", "Callisto"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_032",
+    "text": "What element has the atomic number 79?",
+    "options": ["Silver", "Gold", "Copper", "Platinum"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_033",
+    "text": "What is Newton's first law of motion also called?",
+    "options": ["Law of acceleration", "Law of inertia", "Law of gravity", "Law of momentum"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_034",
+    "text": "What is the study of fungi called?",
+    "options": ["Botany", "Zoology", "Mycology", "Microbiology"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_035",
+    "text": "What blood type is known as the universal donor?",
+    "options": ["A+", "B-", "AB+", "O-"],
+    "correctIndex": 3,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_036",
+    "text": "What phenomenon explains why time slows down near massive objects?",
+    "options": [
+      "Quantum entanglement",
+      "Gravitational time dilation",
+      "Doppler effect",
+      "Hawking radiation"
+    ],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sci_037",
+    "text": "What is the name of the boundary around a black hole?",
+    "options": ["Event horizon", "Schwarzschild radius", "Singularity", "Photon sphere"],
+    "correctIndex": 0,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sci_038",
+    "text": "What is the most electronegative element?",
+    "options": ["Oxygen", "Chlorine", "Fluorine", "Nitrogen"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sci_039",
+    "text": "What organelle is responsible for protein synthesis?",
+    "options": ["Endoplasmic reticulum", "Ribosome", "Lysosome", "Peroxisome"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sci_040",
+    "text": "What is the phenomenon where light bends around massive objects?",
+    "options": [
+      "Refraction",
+      "Diffraction",
+      "Gravitational lensing",
+      "Chromatic aberration"
+    ],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sci_041",
+    "text": "What is the half-life of Carbon-14?",
+    "options": ["1,730 years", "5,730 years", "10,730 years", "20,730 years"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sci_042",
+    "text": "What is the name of the process where unstable atomic nuclei lose energy?",
+    "options": ["Ionization", "Fission", "Radioactive decay", "Sublimation"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sci_043",
+    "text": "What is the Pauli exclusion principle?",
+    "options": [
+      "No two electrons can have identical quantum states",
+      "Energy cannot be created or destroyed",
+      "Entropy always increases",
+      "Action equals reaction"
+    ],
+    "correctIndex": 0,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sci_044",
+    "text": "What is the molecular shape of methane (CH4)?",
+    "options": ["Linear", "Trigonal planar", "Tetrahedral", "Octahedral"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sci_045",
+    "text": "What is the critical temperature at which a superconductor exhibits zero resistance?",
+    "options": [
+      "Above absolute zero",
+      "At absolute zero",
+      "Below a material-specific critical temperature",
+      "At room temperature"
+    ],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sci_046",
+    "text": "What is the process by which cells divide to produce gametes?",
+    "options": ["Mitosis", "Meiosis", "Binary fission", "Budding"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_047",
+    "text": "What is the hardest natural substance on Earth?",
+    "options": ["Steel", "Diamond", "Graphene", "Titanium"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "sci_048",
+    "text": "What is the name of the first artificial satellite?",
+    "options": ["Explorer 1", "Sputnik 1", "Vanguard 1", "Telstar 1"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "sci_049",
+    "text": "What is the Hubble constant used to measure?",
+    "options": [
+      "The expansion rate of the universe",
+      "The temperature of stars",
+      "The mass of galaxies",
+      "The age of planets"
+    ],
+    "correctIndex": 0,
+    "difficulty": "hard"
+  },
+  {
+    "id": "sci_050",
+    "text": "What quantum phenomenon allows particles to exist in multiple states simultaneously?",
+    "options": ["Entanglement", "Superposition", "Tunneling", "Decoherence"],
+    "correctIndex": 1,
+    "difficulty": "hard"
   }
 ]

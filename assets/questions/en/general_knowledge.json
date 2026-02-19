@@ -1,0 +1,282 @@
+[
+  {
+    "id": "gen_001",
+    "text": "What is the capital of France?",
+    "options": ["London", "Berlin", "Paris", "Madrid"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "gen_002",
+    "text": "How many days are in a leap year?",
+    "options": ["364", "365", "366", "367"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "gen_003",
+    "text": "What is the largest mammal in the world?",
+    "options": ["African Elephant", "Blue Whale", "Giraffe", "Polar Bear"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "gen_004",
+    "text": "How many colors are in a rainbow?",
+    "options": ["5", "6", "7", "8"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "gen_005",
+    "text": "What is the currency of Japan?",
+    "options": ["Yuan", "Won", "Yen", "Ringgit"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "gen_006",
+    "text": "Which planet is closest to the Sun?",
+    "options": ["Venus", "Mercury", "Mars", "Earth"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "gen_007",
+    "text": "What is the tallest building in the world?",
+    "options": ["Shanghai Tower", "Burj Khalifa", "Abraj Al-Bait Clock Tower", "One World Trade Center"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "gen_008",
+    "text": "How many sides does a hexagon have?",
+    "options": ["5", "6", "7", "8"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "gen_009",
+    "text": "What is the smallest planet in our solar system?",
+    "options": ["Mars", "Mercury", "Venus", "Pluto"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "gen_010",
+    "text": "What language has the most native speakers?",
+    "options": ["English", "Spanish", "Mandarin Chinese", "Hindi"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "gen_011",
+    "text": "How many strings does a standard guitar have?",
+    "options": ["4", "5", "6", "7"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "gen_012",
+    "text": "What is the name of the fairy tale character who left her glass slipper?",
+    "options": ["Snow White", "Sleeping Beauty", "Cinderella", "Rapunzel"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "gen_013",
+    "text": "What is the largest ocean on Earth?",
+    "options": ["Atlantic", "Indian", "Arctic", "Pacific"],
+    "correctIndex": 3,
+    "difficulty": "easy"
+  },
+  {
+    "id": "gen_014",
+    "text": "How many hours are in a day?",
+    "options": ["12", "20", "24", "28"],
+    "correctIndex": 2,
+    "difficulty": "easy"
+  },
+  {
+    "id": "gen_015",
+    "text": "What is the main ingredient in hummus?",
+    "options": ["Lentils", "Chickpeas", "Kidney Beans", "Black Beans"],
+    "correctIndex": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "gen_016",
+    "text": "Who painted the Mona Lisa?",
+    "options": ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "gen_017",
+    "text": "What is the world's most populous country?",
+    "options": ["United States", "China", "India", "Indonesia"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "gen_018",
+    "text": "In which year did the Titanic sink?",
+    "options": ["1910", "1911", "1912", "1913"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "gen_019",
+    "text": "What is the hardest natural substance on Earth?",
+    "options": ["Gold", "Iron", "Diamond", "Quartz"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "gen_020",
+    "text": "How many teeth does an adult human have?",
+    "options": ["28", "30", "32", "36"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "gen_021",
+    "text": "What is the capital of Australia?",
+    "options": ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "gen_022",
+    "text": "Which famous author wrote 'Romeo and Juliet'?",
+    "options": ["Charles Dickens", "William Shakespeare", "Mark Twain", "Jane Austen"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "gen_023",
+    "text": "What is the smallest country in the world by area?",
+    "options": ["Monaco", "San Marino", "Vatican City", "Liechtenstein"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "gen_024",
+    "text": "How many keys are on a standard piano?",
+    "options": ["76", "82", "88", "92"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "gen_025",
+    "text": "What is the chemical formula for table salt?",
+    "options": ["KCl", "NaCl", "CaCl2", "MgCl2"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "gen_026",
+    "text": "Which Arab city is known as 'The Pearl of the Gulf'?",
+    "options": ["Dubai", "Doha", "Kuwait City", "Manama"],
+    "correctIndex": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "gen_027",
+    "text": "What is the name of the longest river in Africa?",
+    "options": ["Congo River", "Niger River", "Zambezi River", "Nile River"],
+    "correctIndex": 3,
+    "difficulty": "medium"
+  },
+  {
+    "id": "gen_028",
+    "text": "How many bones are in the human body?",
+    "options": ["186", "196", "206", "216"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "gen_029",
+    "text": "What is the national dish of Lebanon?",
+    "options": ["Falafel", "Shawarma", "Kibbeh", "Tabbouleh"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "gen_030",
+    "text": "Which famous scientist developed the theory of general relativity?",
+    "options": ["Isaac Newton", "Nikola Tesla", "Albert Einstein", "Stephen Hawking"],
+    "correctIndex": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "gen_031",
+    "text": "What is the name of the first programmable computer?",
+    "options": ["ENIAC", "UNIVAC", "Z3", "Colossus"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "gen_032",
+    "text": "In which year did the Berlin Wall fall?",
+    "options": ["1987", "1988", "1989", "1990"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "gen_033",
+    "text": "What is the rarest blood type?",
+    "options": ["AB-", "O-", "A-", "B-"],
+    "correctIndex": 0,
+    "difficulty": "hard"
+  },
+  {
+    "id": "gen_034",
+    "text": "Who was the first person to walk on the moon?",
+    "options": ["Buzz Aldrin", "Neil Armstrong", "Yuri Gagarin", "Michael Collins"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "gen_035",
+    "text": "What is the deepest point in Earth's oceans?",
+    "options": ["Puerto Rico Trench", "Java Trench", "Mariana Trench", "Philippine Trench"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "gen_036",
+    "text": "Which element has the chemical symbol 'Au'?",
+    "options": ["Silver", "Gold", "Copper", "Aluminum"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "gen_037",
+    "text": "What is the oldest university in the world still in operation?",
+    "options": ["Oxford University", "University of Al Quaraouiyine", "University of Bologna", "Harvard University"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "gen_038",
+    "text": "How many time zones does Russia span?",
+    "options": ["9", "10", "11", "12"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "gen_039",
+    "text": "What is the most spoken language in the world by total speakers?",
+    "options": ["Mandarin Chinese", "English", "Spanish", "Hindi"],
+    "correctIndex": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": "gen_040",
+    "text": "Which company was the first to reach a $1 trillion market cap?",
+    "options": ["Microsoft", "Amazon", "Apple", "Google"],
+    "correctIndex": 2,
+    "difficulty": "hard"
+  }
+]
