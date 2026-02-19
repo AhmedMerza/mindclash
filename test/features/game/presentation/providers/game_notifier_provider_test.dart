@@ -203,12 +203,13 @@ void main() {
             );
       });
 
-      test('currentQuestion returns the first question', () {
+      test('currentQuestion returns a valid question', () {
         final question =
             container.read(gameProvider.notifier).currentQuestion;
 
         expect(question, isNotNull);
-        expect(question!.id, 'q_1');
+        expect(question!.id, startsWith('q_'));
+        expect(question.options.length, 4);
       });
 
       test('currentTeam returns the first team', () {

@@ -41,6 +41,9 @@ class GameNotifier extends _$GameNotifier {
         locale: locale,
       );
 
+      // Shuffle questions to randomize order for each game session
+      allQuestions.shuffle();
+
       final teams = [
         for (int i = 0; i < teamNames.length; i++)
           Team(id: 'p${i + 1}', name: teamNames[i]),
