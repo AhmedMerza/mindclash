@@ -161,7 +161,8 @@ void main() {
       test('full round transitions to roundEnd', () {
         final notifier = container.read(gameProvider.notifier);
 
-        for (var i = 0; i < 5; i++) {
+        // 2 players → questionsPerRound = 4 (adjusted from 5)
+        for (var i = 0; i < 4; i++) {
           notifier
             ..showQuestion()
             ..answerQuestion(0)
@@ -174,7 +175,8 @@ void main() {
       test('nextRound starts new round from handOff', () {
         final notifier = container.read(gameProvider.notifier);
 
-        for (var i = 0; i < 5; i++) {
+        // 2 players → questionsPerRound = 4 (adjusted from 5)
+        for (var i = 0; i < 4; i++) {
           notifier
             ..showQuestion()
             ..answerQuestion(0)
@@ -289,8 +291,9 @@ void main() {
         numberOfRounds: 3,
       );
 
+      // 2 players → questionsPerRound = 4 (adjusted from 5)
       for (var round = 0; round < 3; round++) {
-        for (var q = 0; q < 5; q++) {
+        for (var q = 0; q < 4; q++) {
           notifier
             ..showQuestion()
             ..answerQuestion(0)

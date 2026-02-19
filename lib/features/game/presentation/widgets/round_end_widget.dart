@@ -34,43 +34,47 @@ class RoundEndWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.xl),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Round ${data.currentRound} Complete!',
-              style: AppTypography.heading.copyWith(
-                color: AppColors.secondary,
-              ),
-            ),
-            const SizedBox(height: AppSpacing.xxl),
-            ScoreboardWidget(players: sortedPlayers),
-            const SizedBox(height: AppSpacing.xxxl),
-            SizedBox(
-              width: double.infinity,
-              height: 56,
-              child: ElevatedButton(
-                onPressed: _isLastRound ? onEndGame : onNextRound,
-                child: Text(
-                  _isLastRound ? 'See Results' : 'Next Round',
+      child: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        padding: const EdgeInsets.all(AppSpacing.md),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Round ${data.currentRound} Complete!',
+                style: AppTypography.heading.copyWith(
+                  color: AppColors.secondary,
                 ),
               ),
-            ),
-            if (!_isLastRound) ...[
-              const SizedBox(height: AppSpacing.md),
-              TextButton(
-                onPressed: onEndGame,
-                child: Text(
-                  'End Game',
-                  style: AppTypography.bodySmall.copyWith(
-                    color: AppColors.textDisabled,
+              const SizedBox(height: AppSpacing.lg),
+              ScoreboardWidget(players: sortedPlayers),
+              const SizedBox(height: AppSpacing.xl),
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton(
+                  onPressed: _isLastRound ? onEndGame : onNextRound,
+                  child: Text(
+                    _isLastRound ? 'See Results' : 'Next Round',
                   ),
                 ),
               ),
+              if (!_isLastRound) ...[
+                const SizedBox(height: AppSpacing.md),
+                TextButton(
+                  onPressed: onEndGame,
+                  child: Text(
+                    'End Game',
+                    style: AppTypography.bodySmall.copyWith(
+                      color: AppColors.textDisabled,
+                    ),
+                  ),
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

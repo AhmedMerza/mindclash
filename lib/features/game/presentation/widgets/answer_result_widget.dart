@@ -24,64 +24,68 @@ class AnswerResultWidget extends StatelessWidget {
     final isSkipped = result.selectedIndex == -1;
 
     return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.xl),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              result.isCorrect ? Icons.check_circle : Icons.cancel,
-              size: 80,
-              color: result.isCorrect
-                  ? AppColors.success
-                  : AppColors.error,
-            ),
-            const SizedBox(height: AppSpacing.xl),
-            Text(
-              result.isCorrect
-                  ? 'Correct!'
-                  : isSkipped
-                      ? 'Skipped'
-                      : 'Wrong!',
-              style: AppTypography.heading.copyWith(
+      child: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        padding: const EdgeInsets.all(AppSpacing.lg),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                result.isCorrect ? Icons.check_circle : Icons.cancel,
+                size: 60,
                 color: result.isCorrect
                     ? AppColors.success
                     : AppColors.error,
               ),
-            ),
-            const SizedBox(height: AppSpacing.lg),
-            if (result.isCorrect)
+              const SizedBox(height: AppSpacing.md),
               Text(
-                '+${result.pointsAwarded} points',
-                style: AppTypography.subheading.copyWith(
-                  color: AppColors.secondary,
+                result.isCorrect
+                    ? 'Correct!'
+                    : isSkipped
+                        ? 'Skipped'
+                        : 'Wrong!',
+                style: AppTypography.heading.copyWith(
+                  color: result.isCorrect
+                      ? AppColors.success
+                      : AppColors.error,
                 ),
               ),
-            if (!result.isCorrect) ...[
-              const SizedBox(height: AppSpacing.sm),
-              const Text(
-                'Correct answer:',
-                style: AppTypography.bodySmall,
-              ),
-              const SizedBox(height: AppSpacing.xs),
-              Text(
-                result.correctAnswerText,
-                style: AppTypography.subheading.copyWith(
-                  color: AppColors.success,
+              const SizedBox(height: AppSpacing.md),
+              if (result.isCorrect)
+                Text(
+                  '+${result.pointsAwarded} points',
+                  style: AppTypography.subheading.copyWith(
+                    color: AppColors.secondary,
+                  ),
                 ),
-                textAlign: TextAlign.center,
+              if (!result.isCorrect) ...[
+                const SizedBox(height: AppSpacing.sm),
+                const Text(
+                  'Correct answer:',
+                  style: AppTypography.bodySmall,
+                ),
+                const SizedBox(height: AppSpacing.xs),
+                Text(
+                  result.correctAnswerText,
+                  style: AppTypography.subheading.copyWith(
+                    color: AppColors.success,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+              const SizedBox(height: AppSpacing.xl),
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton(
+                  onPressed: onContinue,
+                  child: const Text('Continue'),
+                ),
               ),
             ],
-            const SizedBox(height: AppSpacing.xxxl),
-            SizedBox(
-              width: double.infinity,
-              height: 56,
-              child: ElevatedButton(
-                onPressed: onContinue,
-                child: const Text('Continue'),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

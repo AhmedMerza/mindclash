@@ -36,17 +36,30 @@ class GameNotifier extends _$GameNotifier {
   }) async {
     try {
       final repo = ref.read(questionRepositoryProvider);
-      final questions = await repo.getQuestions(
+      final allQuestions = await repo.getQuestions(
         category: _defaultCategory,
         locale: locale,
       );
 
-    final players = [
-      for (int i = 0; i < playerNames.length; i++)
-        Player(id: 'p${i + 1}', name: playerNames[i]),
-    ];
+      final players = [
+        for (int i = 0; i < playerNames.length; i++)
+          Player(id: 'p${i + 1}', name: playerNames[i]),
+      ];
 
-    final config = GameConfig(numberOfRounds: numberOfRounds);
+      // Adjust questions per round to ensure fair distribution
+      // Each player must get the same number of questions per round
+      const baseQuestionsPerRound = 5;
+      final questionsPerRound =
+          (baseQuestionsPerRound ~/ players.length) * players.length;
+
+      // Calculate total questions needed and trim the list
+      final totalQuestionsNeeded = numberOfRounds * questionsPerRound;
+      final questions = allQuestions.take(totalQuestionsNeeded).toList();
+
+      final config = GameConfig(
+        numberOfRounds: numberOfRounds,
+        questionsPerRound: questionsPerRound,
+      );
 
       // Reset to initial state first to support "Play Again"
       final newState = _engine.process(

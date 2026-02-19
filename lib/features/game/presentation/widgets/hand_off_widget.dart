@@ -3,7 +3,6 @@ import 'package:mindclash/core/theme/app_colors.dart';
 import 'package:mindclash/core/theme/app_spacing.dart';
 import 'package:mindclash/core/theme/app_typography.dart';
 import 'package:mindclash/features/game/domain/entities/game_data.dart';
-import 'package:mindclash/features/game/presentation/constants/game_constants.dart';
 
 /// Pass-the-device screen shown between turns.
 ///
@@ -33,45 +32,49 @@ class HandOffWidget extends StatelessWidget {
     final totalQuestions = data.config.questionsPerRound;
 
     return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.xl),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Round ${data.currentRound} of ${data.config.numberOfRounds}',
-              style: AppTypography.bodySmall,
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            Text(
-              'Question $questionNumber of $totalQuestions',
-              style: AppTypography.caption,
-            ),
-            const SizedBox(height: AppSpacing.xxxl),
-            Text(
-              player.name,
-              style: AppTypography.heading.copyWith(
-                color: AppColors.secondary,
-                fontSize: GameConstants.largeFontSize,
+      child: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        padding: const EdgeInsets.all(AppSpacing.md),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Round ${data.currentRound} of ${data.config.numberOfRounds}',
+                style: AppTypography.bodySmall,
               ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: AppSpacing.lg),
-            const Text(
-              "It's your turn!",
-              style: AppTypography.subheading,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: AppSpacing.xxxl),
-            SizedBox(
-              width: double.infinity,
-              height: 56,
-              child: ElevatedButton(
-                onPressed: onShowQuestion,
-                child: const Text('Show Question'),
+              const SizedBox(height: AppSpacing.xs),
+              Text(
+                'Question $questionNumber of $totalQuestions',
+                style: AppTypography.caption,
               ),
-            ),
-          ],
+              const SizedBox(height: AppSpacing.lg),
+              Text(
+                player.name,
+                style: AppTypography.heading.copyWith(
+                  color: AppColors.secondary,
+                  fontSize: 32,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: AppSpacing.md),
+              const Text(
+                "It's your turn!",
+                style: AppTypography.subheading,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: AppSpacing.xl),
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton(
+                  onPressed: onShowQuestion,
+                  child: const Text('Show Question'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

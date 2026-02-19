@@ -95,13 +95,17 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Game Setup')),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(AppSpacing.lg),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Text('Players', style: AppTypography.subheading),
-            const SizedBox(height: AppSpacing.md),
+      body: Center(
+        child: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          padding: const EdgeInsets.all(AppSpacing.lg),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 800),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text('Players', style: AppTypography.subheading),
+                const SizedBox(height: AppSpacing.md),
 
             ...List.generate(setupState.playerNames.length, (index) {
               return Padding(
@@ -233,7 +237,9 @@ class _SetupScreenState extends ConsumerState<SetupScreen> {
                     : const Text('Start Game'),
               ),
             ),
-          ],
+              ],
+            ),
+          ),
         ),
       ),
     );
