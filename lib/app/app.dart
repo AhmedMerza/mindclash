@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mindclash/core/theme/app_theme.dart';
+import 'package:mindclash/features/game/presentation/screens/home_screen.dart';
 
 /// Root widget for the MindClash application.
 class MindClashApp extends StatelessWidget {
@@ -11,11 +12,7 @@ class MindClashApp extends StatelessWidget {
     return MaterialApp(
       title: 'MindClash',
       theme: AppTheme.light(),
-      home: const Scaffold(
-        body: Center(
-          child: Text('MindClash'),
-        ),
-      ),
+      home: const HomeScreen(),
     );
   }
 }
